@@ -23,6 +23,8 @@
   --sky-pale: #e0f5ff;
   --green: #15803d;
   --green-pale: #f0fdf4;
+  --purple: #7c3aed;
+  --purple-pale: #f5f3ff;
   --text: #1c1c28;
   --muted: #64748b;
   --border: #e2e8f0;
@@ -65,14 +67,17 @@ h1.hero-title em{color:#5eead4;font-style:italic}
 .pw.c3{background:var(--teal-pale);border-color:#99f6e4}
 .pw.c4{background:var(--amber-pale);border-color:#fde68a}
 .pw.c5{background:var(--rose-pale);border-color:#fecdd3}
+.pw.c6{background:var(--purple-pale);border-color:#ddd6fe}
 .pw-ico{font-size:26px;margin-bottom:12px}
 .pw-name{font-weight:700;font-size:14.5px;color:var(--navy);margin-bottom:6px}
 .pw-desc{font-size:12.5px;color:#374151;line-height:1.55;margin-bottom:14px}
 .pw-chip{display:inline-block;font-size:11px;font-weight:700;padding:3px 11px;border-radius:100px;background:rgba(14,27,53,.1);color:var(--navy)}
 .badge-new{position:absolute;top:13px;right:13px;background:var(--teal);color:#fff;font-size:9px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:3px 9px;border-radius:100px}
+.badge-arts{position:absolute;top:13px;right:13px;background:var(--purple);color:#fff;font-size:9px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:3px 9px;border-radius:100px}
 
 .tbl-wrap{background:var(--surface);border-radius:16px;border:1.5px solid var(--border);overflow:hidden;margin-bottom:22px;box-shadow:0 2px 12px rgba(0,0,0,.04)}
 .tbl-head{background:var(--navy);color:#fff;padding:13px 18px;font-weight:600;font-size:13.5px;display:flex;align-items:center;gap:8px}
+.tbl-head.purple-head{background:linear-gradient(135deg,#5b21b6,#7c3aed)}
 table{width:100%;border-collapse:collapse}
 th{background:#f8fafc;padding:10px 14px;font-size:11.5px;font-weight:700;color:var(--muted);text-align:center;border-bottom:1.5px solid var(--border);text-transform:uppercase;letter-spacing:.05em;white-space:nowrap}
 th:first-child{text-align:left}
@@ -85,6 +90,7 @@ tr:hover td{background:#fafcfe}
 .ckns{display:block;font-size:9px;font-weight:800;color:var(--teal);text-transform:uppercase;letter-spacing:.04em;margin-top:1px}
 .xx{color:#d1d5db}
 .tag-n{display:inline-block;background:var(--teal);color:#fff;font-size:9px;font-weight:800;padding:2px 7px;border-radius:100px;text-transform:uppercase;vertical-align:middle;margin-left:5px}
+.tag-arts{display:inline-block;background:var(--purple);color:#fff;font-size:9px;font-weight:800;padding:2px 7px;border-radius:100px;text-transform:uppercase;vertical-align:middle;margin-left:5px}
 
 .two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px}
 @media(max-width:620px){.two-col{grid-template-columns:1fr}}
@@ -102,6 +108,7 @@ tr:hover td{background:#fafcfe}
 .callout.sky{background:var(--sky-pale);border:1.5px solid #7dd3fc}
 .callout.rose{background:var(--rose-pale);border:1.5px solid #fda4af}
 .callout.indigo{background:var(--indigo-pale);border:1.5px solid #a5b4fc}
+.callout.purple{background:var(--purple-pale);border:1.5px solid #c4b5fd}
 .c-ico{font-size:22px;flex-shrink:0;margin-top:1px}
 .c-title{font-weight:700;font-size:13.5px;margin-bottom:4px}
 .callout.green .c-title{color:#14532d}
@@ -114,13 +121,53 @@ tr:hover td{background:#fafcfe}
 .callout.rose p{color:#9f1239;font-size:13px;line-height:1.6}
 .callout.indigo .c-title{color:#312e81}
 .callout.indigo p{color:#3730a3;font-size:13px;line-height:1.6}
+.callout.purple .c-title{color:#4c1d95}
+.callout.purple p{color:#5b21b6;font-size:13px;line-height:1.6}
 .pill{display:inline-block;background:var(--navy);color:#d1fae5;font-size:11px;font-weight:700;padding:2px 10px;border-radius:100px;margin:0 3px}
+.pill-purple{display:inline-block;background:var(--purple);color:#f5f3ff;font-size:11px;font-weight:700;padding:2px 10px;border-radius:100px;margin:0 3px}
 .divider{height:1px;background:var(--border);margin:26px 0}
+
+/* Arts section special styles */
+.arts-hero{background:linear-gradient(135deg,#2e1065 0%,#4c1d95 50%,#5b21b6 100%);border-radius:18px;padding:28px 32px;margin-bottom:20px;position:relative;overflow:hidden}
+.arts-hero::before{content:'🎨';position:absolute;right:24px;top:50%;transform:translateY(-50%);font-size:72px;opacity:.15}
+.arts-hero h3{font-family:'Fraunces',serif;font-size:1.4rem;color:#fff;margin-bottom:8px}
+.arts-hero p{font-size:13px;color:rgba(255,255,255,.7);line-height:1.7;max-width:580px}
+.arts-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.85);font-size:11px;font-weight:700;padding:4px 12px;border-radius:100px;margin-bottom:14px}
+
+.condition-card{background:var(--surface);border-radius:14px;padding:20px 22px;border:2px solid #ddd6fe;margin-bottom:12px}
+.condition-num{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;background:var(--purple);color:#fff;font-size:13px;font-weight:800;border-radius:50%;margin-right:10px;flex-shrink:0}
+.condition-row{display:flex;align-items:flex-start;gap:0}
+.condition-text{flex:1;font-size:13.5px;color:var(--navy);line-height:1.6;font-weight:500}
+.condition-sub{font-size:12px;color:var(--muted);margin-top:4px;font-weight:400}
+
+/* G1 section styles */
+.g1-hero{background:linear-gradient(135deg,#1c1917 0%,#292524 50%,#44403c 100%);border-radius:18px;padding:28px 32px;margin-bottom:20px;position:relative;overflow:hidden}
+.g1-hero::before{content:'🌱';position:absolute;right:24px;top:50%;transform:translateY(-50%);font-size:72px;opacity:.15}
+.g1-hero h3{font-family:'Fraunces',serif;font-size:1.4rem;color:#fff;margin-bottom:8px}
+.g1-hero p{font-size:13px;color:rgba(255,255,255,.7);line-height:1.7;max-width:580px}
+
+.grade-map-table{width:100%;border-collapse:collapse;font-size:13px}
+.grade-map-table th{background:#1c1917;color:#fff;padding:9px 14px;text-align:center;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em}
+.grade-map-table th:first-child{text-align:left}
+.grade-map-table td{padding:9px 14px;border-bottom:1px solid #f1f5f9;text-align:center}
+.grade-map-table td:first-child{text-align:left;font-weight:600}
+.grade-map-table tr:last-child td{border-bottom:none}
+.grade-map-table .g3-col{color:var(--sky);font-weight:700}
+.grade-map-table .g2-col{color:var(--amber);font-weight:700}
+.grade-map-table .g1-col{color:var(--purple);font-weight:700}
+.grade-map-table .ite-col{color:var(--teal);font-weight:700}
+
+.pathway-flow{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:16px 0;padding:16px 20px;background:var(--surface);border-radius:12px;border:1.5px solid var(--border)}
+.flow-box{background:var(--amber-pale);border:1.5px solid #fcd34d;border-radius:10px;padding:10px 16px;font-size:12.5px;font-weight:700;color:#78350f;text-align:center;white-space:nowrap}
+.flow-box.highlight{background:#fef9c3;border-color:var(--amber)}
+.flow-arrow{color:var(--muted);font-size:18px;font-weight:700;flex-shrink:0}
+.flow-cond{font-size:11px;color:var(--muted);text-align:center;margin-top:3px;font-weight:400}
 
 /* ── CALCULATOR ── */
 .calc-shell{background:var(--surface);border-radius:20px;border:1.5px solid var(--border);overflow:hidden;margin-bottom:24px;box-shadow:0 4px 24px rgba(0,0,0,.06)}
-.calc-tabs{display:flex;border-bottom:2px solid var(--border)}
-.ctab{flex:1;padding:14px;text-align:center;font-size:13px;font-weight:600;color:var(--muted);background:none;border:none;cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px;transition:all .18s}
+.calc-tabs{display:flex;border-bottom:2px solid var(--border);overflow-x:auto;scrollbar-width:none}
+.calc-tabs::-webkit-scrollbar{display:none}
+.ctab{flex-shrink:0;padding:14px 16px;text-align:center;font-size:12.5px;font-weight:600;color:var(--muted);background:none;border:none;cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px;transition:all .18s;white-space:nowrap}
 .ctab:hover{color:var(--navy)}
 .ctab.on{color:var(--navy);border-bottom-color:var(--indigo)}
 .calc-panel{display:none;padding:28px}
@@ -153,10 +200,13 @@ tr:hover td{background:#fafcfe}
 
 .calc-run{background:var(--navy);color:#fff;border:none;padding:13px 32px;border-radius:12px;font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:14px;cursor:pointer;transition:all .2s;margin-top:4px}
 .calc-run:hover{background:var(--navy2);transform:translateY(-2px);box-shadow:0 8px 20px rgba(14,27,53,.25)}
+.calc-run.purple-btn{background:linear-gradient(135deg,#5b21b6,#7c3aed)}
+.calc-run.purple-btn:hover{background:linear-gradient(135deg,#4c1d95,#6d28d9)}
 
 .result-box{margin-top:22px;border-radius:16px;overflow:hidden;border:1.5px solid var(--border);display:none}
 .result-box.show{display:block}
 .result-header{background:linear-gradient(135deg,var(--navy) 0%,var(--navy2) 100%);padding:20px 24px;display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+.result-header.purple-header{background:linear-gradient(135deg,#2e1065,#5b21b6)}
 .rscore-n{font-family:'Fraunces',serif;font-size:3rem;font-weight:700;color:#fbbf24;line-height:1}
 .rscore-l{font-size:11px;color:rgba(255,255,255,.5);margin-top:3px;text-transform:uppercase;letter-spacing:.05em}
 .rbk{flex:1}
@@ -170,6 +220,7 @@ tr:hover td{background:#fafcfe}
 .ep.yes{background:#dcfce7;color:#15803d;border:1.5px solid #86efac}
 .ep.maybe{background:var(--amber-pale);color:#92400e;border:1.5px solid #fcd34d}
 .ep.no{background:#f1f5f9;color:var(--muted);border:1.5px solid var(--border)}
+.ep.arts{background:var(--purple-pale);color:#4c1d95;border:1.5px solid #c4b5fd}
 .rnote{margin-top:14px;font-size:12px;color:var(--muted);line-height:1.6;padding:12px 14px;background:var(--surface);border-radius:10px;border:1px solid var(--border)}
 
 .bonus-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(165px,1fr));gap:12px;margin-bottom:16px}
@@ -203,7 +254,7 @@ tr:hover td{background:#fafcfe}
     <h1 class="hero-title">Post-Secondary <em>Pathways</em><br>for Your Child</h1>
     <p class="hero-sub">From 2028, Singapore's post-secondary system becomes more flexible. More subject combinations open more doors. Explore every pathway and calculate your child's scores.</p>
     <div class="hero-kpi">
-      <div class="kpi"><div class="kpi-n">6</div><div class="kpi-l">Pathways</div></div>
+      <div class="kpi"><div class="kpi-n">8</div><div class="kpi-l">Pathways</div></div>
       <div class="kpi"><div class="kpi-n">2028</div><div class="kpi-l">Changes Start</div></div>
       <div class="kpi"><div class="kpi-n">L1R4</div><div class="kpi-l">New JC Criteria</div></div>
       <div class="kpi"><div class="kpi-n">G1–G3</div><div class="kpi-l">Subject Levels</div></div>
@@ -217,6 +268,8 @@ tr:hover td{background:#fafcfe}
     <button class="ntab" onclick="showSec('jc')">JC &amp; MI</button>
     <button class="ntab" onclick="showSec('poly')">Polytechnic</button>
     <button class="ntab" onclick="showSec('ite')">ITE</button>
+    <button class="ntab" onclick="showSec('arts')">🎨 LASALLE / NAFA</button>
+    <button class="ntab" onclick="showSec('g1')">🌱 G1 Students</button>
     <button class="ntab" onclick="showSec('calc')">🧮 Score Calculator</button>
     <button class="ntab" onclick="showSec('support')">Support</button>
   </div>
@@ -264,6 +317,20 @@ tr:hover td{background:#fafcfe}
       <div class="pw-chip">ELMAB3 ≤ 19</div>
       <div class="badge-new">Upgraded</div>
     </div>
+    <div class="pw c6" onclick="showSec('arts')">
+      <div class="pw-ico">🎨</div>
+      <div class="pw-name">LASALLE / NAFA</div>
+      <div class="pw-desc">Arts institutions offering creative diplomas. New 2028 SEC aggregate criteria. Portfolio/audition required.</div>
+      <div class="pw-chip">4-subject Agg ≤ 21</div>
+      <div class="badge-arts">New 2028</div>
+    </div>
+    <div class="pw c6" onclick="showSec('arts')">
+      <div class="pw-ico">🌟</div>
+      <div class="pw-name">NAFA Foundation Programme</div>
+      <div class="pw-desc">1-year art foundation into NAFA diploma. ELMAB3 ≤ 15 (G2 level, excl. CCA). Portfolio required.</div>
+      <div class="pw-chip">ELMAB3 ≤ 15</div>
+      <div class="badge-arts">New 2028</div>
+    </div>
   </div>
 
   <div class="tbl-wrap">
@@ -278,25 +345,27 @@ tr:hover td{background:#fafcfe}
           <th>Poly Yr 1 <span class="tag-n">New</span></th>
           <th>MI</th>
           <th>JC <span class="tag-n">New</span></th>
+          <th>LASALLE/NAFA <span class="tag-arts">New</span></th>
+          <th>NAFA FP <span class="tag-arts">New</span></th>
         </tr>
       </thead>
       <tbody>
-        <tr><td>6 G3 subjects</td><td><span class="ck">✓</span></td><td><span class="ck">✓</span></td><td><span class="ckn">✓<span class="ckns">NEW</span></span></td><td><span class="ck">✓</span></td><td><span class="ck">✓</span></td><td><span class="ck">✓</span></td></tr>
-        <tr><td>5 G3 subjects</td><td><span class="ck">✓</span></td><td><span class="ck">✓</span></td><td><span class="ckn">✓<span class="ckns">NEW</span></span></td><td><span class="ck">✓</span></td><td><span class="ck">✓</span></td><td><span class="ckn">✓<span class="ckns">NEW</span></span></td></tr>
-        <tr><td>4 G3 + 1 G2</td><td><span class="ck">✓</span></td><td><span class="ck">✓</span></td><td><span class="ckn">✓<span class="ckns">NEW</span></span></td><td><span class="ckn">✓<span class="ckns">NEW</span></span></td><td><span class="xx">—</span></td><td><span class="xx">—</span></td></tr>
-        <tr><td>5 G2 subjects</td><td><span class="ck">✓</span></td><td><span class="ck">✓</span></td><td><span class="ck">✓</span></td><td><span class="xx">—</span></td><td><span class="xx">—</span></td><td><span class="xx">—</span></td></tr>
-        <tr><td>4 G1 subjects</td><td><span class="ck">✓</span></td><td><span class="ckn">✓<span class="ckns">NEW*</span></span></td><td><span class="xx">—</span></td><td><span class="xx">—</span></td><td><span class="xx">—</span></td><td><span class="xx">—</span></td></tr>
+        <tr><td>6 G3 subjects</td><td><span class="ck">✓</span></td><td><span class="ck">✓</span></td><td><span class="ckn">✓<span class="ckns">NEW</span></span></td><td><span class="ck">✓</span></td><td><span class="ck">✓</span></td><td><span class="ck">✓</span></td><td><span class="ckn">✓<span class="ckns">NEW</span></span></td><td><span class="ckn">✓<span class="ckns">NEW</span></span></td></tr>
+        <tr><td>5 G3 subjects</td><td><span class="ck">✓</span></td><td><span class="ck">✓</span></td><td><span class="ckn">✓<span class="ckns">NEW</span></span></td><td><span class="ck">✓</span></td><td><span class="ck">✓</span></td><td><span class="ckn">✓<span class="ckns">NEW</span></span></td><td><span class="ckn">✓<span class="ckns">NEW</span></span></td><td><span class="ckn">✓<span class="ckns">NEW</span></span></td></tr>
+        <tr><td>4 G3 + 1 G2</td><td><span class="ck">✓</span></td><td><span class="ck">✓</span></td><td><span class="ckn">✓<span class="ckns">NEW</span></span></td><td><span class="ckn">✓<span class="ckns">NEW</span></span></td><td><span class="xx">—</span></td><td><span class="xx">—</span></td><td><span class="ckn">✓<span class="ckns">NEW</span></span></td><td><span class="ckn">✓<span class="ckns">NEW</span></span></td></tr>
+        <tr><td>5 G2 subjects</td><td><span class="ck">✓</span></td><td><span class="ck">✓</span></td><td><span class="ck">✓</span></td><td><span class="xx">—</span></td><td><span class="xx">—</span></td><td><span class="xx">—</span></td><td><span class="xx">—</span></td><td><span class="ck">✓</span></td></tr>
+        <tr><td>4 G1 subjects</td><td><span class="ck">✓</span></td><td><span class="ckn">✓<span class="ckns">NEW*</span></span></td><td><span class="xx">—</span></td><td><span class="xx">—</span></td><td><span class="xx">—</span></td><td><span class="xx">—</span></td><td><span class="xx">—</span></td><td><span class="xx">—</span></td></tr>
       </tbody>
     </table>
     </div>
-    <div style="padding:9px 16px;font-size:11.5px;color:var(--muted)">* G1 students who meet ITE Year 1 academic requirements</div>
+    <div style="padding:9px 16px;font-size:11.5px;color:var(--muted)">* G1 students who meet ITE Year 1 academic requirements &nbsp;·&nbsp; LASALLE/NAFA requires portfolio, audition, or interview in addition to academic criteria</div>
   </div>
 
   <div class="callout green">
     <div class="c-ico">💡</div>
     <div class="c-body">
       <div class="c-title">Key Takeaway for Parents</div>
-      <p>From 2028, having <span class="pill">4 G3 + 1 G2</span> now unlocks both Polytechnic Year 1 and PFP. Students with 5 G3 subjects can now also access JC. If aiming for JC, HMTL can serve as L1 if it scores better than English — use the Score Calculator to see the impact.</p>
+      <p>From 2028, having <span class="pill">4 G3 + 1 G2</span> now unlocks both Polytechnic Year 1, PFP, and LASALLE/NAFA Year 1. Students with 5 G3 subjects can now also access JC. If aiming for JC, HMTL can serve as L1 if it scores better than English. Arts-inclined students should check the new LASALLE/NAFA criteria tab — a portfolio matters as much as grades.</p>
     </div>
   </div>
 </div>
@@ -488,9 +557,9 @@ tr:hover td{background:#fafcfe}
       <div class="icard-t"><span>🌉</span> G1 Student Bridging Pathway</div>
       <ul>
         <li>Start from Year 1 of 3-Year Higher NITEC</li>
-        <li>If GPA ≥ 3.7 in Year 1 Sem 1 → bridging eligible</li>
-        <li>3-month bridge → progress to Year 2 Sem 2</li>
-        <li>Course duration reduced to 2 years 3 months</li>
+        <li>Students who perform well in Year 1 Sem 1 may be offered the bridging pathway</li>
+        <li>Short bridging programme → progress to Year 2 Sem 2</li>
+        <li>Overall course duration reduced by several months</li>
       </ul>
     </div>
   </div>
@@ -512,16 +581,277 @@ tr:hover td{background:#fafcfe}
   </div>
 </div>
 
+<!-- ARTS INSTITUTIONS (NEW) -->
+<div class="sec" id="arts">
+  <h2 class="pg-title">LASALLE College of the Arts &amp; NAFA</h2>
+  <p class="pg-sub">From 2028, Singapore's two premier arts institutions adopt new SEC-based admission criteria. Creative talent still matters most — academic grades are just one part of the picture.</p>
+
+  <div class="arts-hero">
+    <div class="arts-badge">🎨 Arts Institutions · From AY2028</div>
+    <h3>Pathways for Arts-Inclined Students</h3>
+    <p>LASALLE and NAFA now use the new SEC qualification (applicable from 2028 intake onwards) as their academic benchmark. Portfolios, auditions, and interviews remain central to admission — fulfilling the academic criteria opens the door, but your creative work gets you in.</p>
+  </div>
+
+  <h3 style="font-family:'Fraunces',serif;font-size:1.25rem;margin-bottom:16px;color:var(--navy)">LASALLE / NAFA Year 1 — Direct Entry</h3>
+
+  <div class="callout purple">
+    <div class="c-ico">📌</div>
+    <div class="c-body">
+      <div class="c-title">Two Conditions Must Both Be Met</div>
+      <p>Academic eligibility for LASALLE/NAFA Year 1 requires satisfying <strong>both</strong> of the following conditions simultaneously. Meeting only one is not sufficient.</p>
+    </div>
+  </div>
+
+  <div class="condition-card">
+    <div class="condition-row">
+      <span class="condition-num">1</span>
+      <div class="condition-text">
+        Aggregate score of <strong>21 points or better</strong> (i.e. ≤ 21) computed across <strong>4 subjects</strong> — comprising 3 subjects at G3 and 1 subject at G2 — <strong>excluding English Language</strong>.
+        <div class="condition-sub">The aggregate is computed from 3 G3 subjects and 1 G2 subject, not including English. Subject-specific grade requirements may also apply — refer to each institution's website for details.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="condition-card">
+    <div class="condition-row">
+      <span class="condition-num">2</span>
+      <div class="condition-text">
+        Required grades for <strong>English Language at G3</strong> must be met.
+        <div class="condition-sub">Each institution may set a different minimum EL grade. Check LASALLE and NAFA websites for their specific English Language requirements.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout amber" style="margin-top:8px">
+    <div class="c-ico">⚠️</div>
+    <div class="c-body">
+      <div class="c-title">Important Notes</div>
+      <p>Eligibility does <strong>not</strong> guarantee placement. In addition to meeting the academic criteria, applicants must submit a <strong>portfolio</strong> and attend an <strong>admission test, audition, or interview</strong> depending on their chosen course. Requirements for LASALLE and NAFA may differ — always refer to the individual institution's website for the most up-to-date information.</p>
+    </div>
+  </div>
+
+  <div class="tbl-wrap" style="margin-top:20px">
+    <div class="tbl-head purple-head">📋 LASALLE / NAFA Year 1 — Eligibility Summary</div>
+    <table>
+      <thead><tr><th style="text-align:left">Criterion</th><th>Requirement</th></tr></thead>
+      <tbody>
+        <tr><td>Qualification</td><td>Singapore-Cambridge SEC (from 2028 intake)</td></tr>
+        <tr><td>Academic aggregate</td><td>3 G3 subjects + 1 G2 subject ≤ 21 pts (excl. English)</td></tr>
+        <tr><td>English Language</td><td>Required G3 grade (varies by institution)</td></tr>
+        <tr><td>Portfolio / Audition</td><td>Required (varies by course)</td></tr>
+        <tr><td>Interview</td><td>May be required</td></tr>
+        <tr><td>Eligibility guarantee</td><td>❌ Academic eligibility does not guarantee placement</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="divider"></div>
+
+  <h3 style="font-family:'Fraunces',serif;font-size:1.25rem;margin-bottom:16px;color:var(--navy)">NAFA Foundation Programme (NFP)</h3>
+
+  <div class="callout purple">
+    <div class="c-ico">🌟</div>
+    <div class="c-body">
+      <div class="c-title">1-Year Art Foundation → NAFA Diploma</div>
+      <p>The NAFA Foundation Programme is a <strong>1-year preparatory programme</strong> that leads directly into a NAFA diploma. It provides students time to build their creative foundation before entering diploma-level study. Upon successful completion, students are offered a place in their chosen diploma programme.</p>
+    </div>
+  </div>
+
+  <div class="two-col">
+    <div class="icard">
+      <div class="icard-t"><span>📐</span> NFP Academic Requirement</div>
+      <ul>
+        <li>Singapore-Cambridge SEC — from 2028 intake</li>
+        <li>ELMAB3 ≤ <strong>15 points</strong> (computed at G2 level)</li>
+        <li>CCA points are <strong>excluded</strong> from ELMAB3 computation</li>
+        <li>G3 subjects are mapped to G2 equivalents using the grade mapping table</li>
+        <li>English Language grade at G3 must also be met</li>
+      </ul>
+    </div>
+    <div class="icard">
+      <div class="icard-t"><span>🗺️</span> G3 → G2 Mapping for NFP ELMAB3</div>
+      <ul>
+        <li>A1, A2, B3 at G3  →  G2 Grade <strong>1</strong></li>
+        <li>B4, C5, C6 at G3  →  G2 Grade <strong>2</strong></li>
+        <li>D7 at G3  →  G2 Grade <strong>3</strong></li>
+        <li>E8 at G3  →  G2 Grade <strong>4</strong></li>
+        <li>Fail (9) at G3  →  G2 Grade <strong>5</strong></li>
+        <li>No G2 equivalent (absent)  →  G2 Grade <strong>6</strong></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="tbl-wrap">
+    <div class="tbl-head purple-head">📋 NFP vs LASALLE/NAFA Year 1 — Quick Comparison</div>
+    <table>
+      <thead><tr><th style="text-align:left">Feature</th><th>LASALLE/NAFA Year 1</th><th>NAFA Foundation Prog</th></tr></thead>
+      <tbody>
+        <tr><td>Duration</td><td>3-year diploma</td><td>1 year + diploma</td></tr>
+        <tr><td>Academic criterion</td><td>3G3 + 1G2 agg ≤ 21 (excl. EL)</td><td>ELMAB3 ≤ 15 (G2, excl. CCA)</td></tr>
+        <tr><td>English Language</td><td>G3 grade required</td><td>G3 grade required</td></tr>
+        <tr><td>Portfolio/Audition</td><td>Required</td><td>Required</td></tr>
+        <tr><td>On completion</td><td>Diploma awarded</td><td>Conditional offer → diploma</td></tr>
+        <tr><td>Available at LASALLE</td><td>Yes</td><td>No (NAFA only)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout green">
+    <div class="c-ico">💡</div>
+    <div class="c-body">
+      <div class="c-title">Advice for Arts-Inclined Students</div>
+      <p>If your child dreams of studying at LASALLE or NAFA, start building their portfolio early — creative work carries significant weight. Academic grades open the door but the portfolio, audition, or interview is what secures a place. Use the ELMAB3 calculator (under Score Calculator) to check NFP eligibility, and always verify current requirements directly on the <strong>LASALLE</strong> and <strong>NAFA</strong> websites as requirements may differ between institutions and courses.</p>
+    </div>
+  </div>
+</div>
+
+<!-- G1 STUDENTS (NEW) -->
+<div class="sec" id="g1">
+  <h2 class="pg-title">G1 Students — Pathways &amp; What to Expect</h2>
+  <p class="pg-sub">Students with at least 4 G1 subjects have a clear pathway into ITE from AY2028, with a new accelerated route for high performers. Every pathway forward is open to them.</p>
+
+  <div class="g1-hero">
+    <h3>G1 Students: Every Door Is Still Open</h3>
+    <p>Taking subjects at G1 level does not close off a future. From AY2028, G1 students enter ITE Year 1 with a new possibility — high performers can bridge to Year 2 in just one semester, shortening their Higher NITEC journey significantly. Hard work in ITE opens the door to polytechnic and beyond.</p>
+  </div>
+
+  <div class="callout amber">
+    <div class="c-ico">📋</div>
+    <div class="c-body">
+      <div class="c-title">ITE Admission for G1 Students (from AY2028)</div>
+      <p>From AY2028, ITE Year 1 admission requirements for 3-Year Higher NITEC courses will be set at <strong>G1 ITE aggregate score</strong>, computed based on <strong>4 G1 subjects</strong>. G3 and G2 grades are mapped all the way down to G1 equivalents using the combined grade mapping table.</p>
+    </div>
+  </div>
+
+  <div class="tbl-wrap">
+    <div class="tbl-head">🗺️ Full Grade Mapping Table: G3 → G2 → G1 → ITE Aggregate</div>
+    <div style="overflow-x:auto">
+    <table class="grade-map-table">
+      <thead>
+        <tr>
+          <th style="text-align:left">G3 Grade</th>
+          <th>→ G2 Grade</th>
+          <th>→ G1 Grade</th>
+          <th>ITE Aggregate Score</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="g3-col">A1, A2, B3</td><td class="g2-col">1</td><td class="g1-col">A</td><td class="ite-col">1</td></tr>
+        <tr><td class="g3-col">B4, C5, C6</td><td class="g2-col">2</td><td class="g1-col">A</td><td class="ite-col">1</td></tr>
+        <tr><td class="g3-col">D7</td><td class="g2-col">3</td><td class="g1-col">A</td><td class="ite-col">1</td></tr>
+        <tr><td class="g3-col">E8</td><td class="g2-col">4</td><td class="g1-col">B</td><td class="ite-col">2</td></tr>
+        <tr><td class="g3-col">9 (Fail)</td><td class="g2-col">5</td><td class="g1-col">C</td><td class="ite-col">3</td></tr>
+        <tr><td style="color:var(--muted);font-style:italic">—</td><td class="g2-col">6</td><td class="g1-col">D</td><td class="ite-col">4</td></tr>
+        <tr><td style="color:var(--muted);font-style:italic">—</td><td style="color:var(--muted)">—</td><td class="g1-col">E</td><td class="ite-col">5</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+
+  <div class="callout sky">
+    <div class="c-ico">📘</div>
+    <div class="c-body">
+      <div class="c-title">Example: Student Taking 1 G2 + 4 G1 Subjects</div>
+      <p>G2 English (Grade 3) → ITE aggregate 1 &nbsp;·&nbsp; G1 MTL (C) → ITE aggregate 3 &nbsp;·&nbsp; G1 Maths (B) → ITE aggregate 2 &nbsp;·&nbsp; G1 Science (A) → ITE aggregate 1 &nbsp;·&nbsp; G1 Computing (B) → ITE aggregate 2. <strong>Best 4 subjects total = 6 points.</strong> (EL + best 3 from remaining subjects.)</p>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+  <h3 style="font-family:'Fraunces',serif;font-size:1.2rem;margin-bottom:16px;color:var(--navy)">The Accelerated Pathway for High-Performing G1 Students</h3>
+
+  <div class="callout green">
+    <div class="c-ico">🚀</div>
+    <div class="c-body">
+      <div class="c-title">Bridge to Year 2 in One Semester</div>
+      <p>G1 students who perform well in their <strong>Year 1 Semester 1 examinations</strong> may be offered the <strong>accelerated pathway</strong>. This allows them to attain a Higher NITEC in a shorter duration — compared to the standard three years. The exact academic benchmark may be updated by ITE; check with your school's ECG counsellor for the latest details.</p>
+    </div>
+  </div>
+
+  <div class="pathway-flow">
+    <div>
+      <div class="flow-box">ITE Year 1<br>Entry</div>
+      <div class="flow-cond">All G1 students</div>
+    </div>
+    <div class="flow-arrow">→</div>
+    <div>
+      <div class="flow-box highlight">Year 1, Sem 1<br>Exams</div>
+      <div class="flow-cond">Perform well<br>academically</div>
+    </div>
+    <div class="flow-arrow">→</div>
+    <div>
+      <div class="flow-box" style="background:#dcfce7;border-color:#86efac;color:#14532d">Accelerated<br>Bridge</div>
+      <div class="flow-cond">If eligible</div>
+    </div>
+    <div class="flow-arrow">→</div>
+    <div>
+      <div class="flow-box" style="background:var(--teal-pale);border-color:#99f6e4;color:#134e4a">Year 2, Sem 2<br>Higher NITEC</div>
+      <div class="flow-cond">Shorter duration</div>
+    </div>
+    <div class="flow-arrow">→</div>
+    <div>
+      <div class="flow-box" style="background:var(--sky-pale);border-color:#7dd3fc;color:#0c4a6e">Polytechnic<br>(GPA ≥ 2.5)</div>
+      <div class="flow-cond">Further study</div>
+    </div>
+  </div>
+
+  <div class="two-col">
+    <div class="icard">
+      <div class="icard-t"><span>🌉</span> Standard G1 Pathway</div>
+      <ul>
+        <li>Enter ITE <strong>Year 1</strong> of 3-Year Higher NITEC</li>
+        <li>Progress normally through Years 1, 2, and 3</li>
+        <li>Total duration: <strong>3 years</strong></li>
+        <li>Upon graduation, eligible for polytechnic with GPA ≥ 2.5</li>
+        <li>Top 10% (~1,000 graduates) guaranteed poly placement</li>
+      </ul>
+    </div>
+    <div class="icard">
+      <div class="icard-t"><span>⚡</span> Accelerated G1 Pathway</div>
+      <ul>
+        <li>Enter ITE Year 1 as normal</li>
+        <li>Students who do well in Year 1 Sem 1 may be offered the bridging pathway</li>
+        <li>Short bridging programme → progress to Year 2, Sem 2</li>
+        <li>Total duration meaningfully shorter than standard 3 years</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout rose">
+    <div class="c-ico">ℹ️</div>
+    <div class="c-body">
+      <div class="c-title">G1 Students and Other Pathways</div>
+      <p>G1 students are generally not eligible for PFP, Polytechnic Year 1, MI, or JC based on academic criteria alone. However, the ITE → Polytechnic route is robust and well-supported. With strong ITE results (GPA ≥ 3.5), a guaranteed polytechnic place awaits — opening further doors to university and beyond. Every step forward counts.</p>
+    </div>
+  </div>
+
+  <div class="callout green">
+    <div class="c-ico">💬</div>
+    <div class="c-body">
+      <div class="c-title">A Note for Parents of G1 Students</div>
+      <p>The G1 track does not limit your child's future. ITE graduates have gone on to polytechnics, universities, and successful careers. The key is supporting your child's confidence and helping them identify their strengths. The accelerated pathway is a real reward for effort — encourage them to give Year 1 Semester 1 their best.</p>
+    </div>
+  </div>
+</div>
+
 <!-- CALCULATOR -->
 <div class="sec" id="calc">
   <h2 class="pg-title">Score Calculator</h2>
-  <p class="pg-sub">Three calculators — JC/MI (L1R4 with full HMTL support), Polytechnic (ELR2B2), and ITE (ELMAB3). All updated for the 2028 intake rules.</p>
+  <p class="pg-sub">Four calculators — JC/MI (L1R4 with full HMTL support), Polytechnic (ELR2B2), ITE (ELMAB3), and LASALLE/NAFA. All updated for the 2028 intake rules.</p>
+
+  <div class="callout rose" style="margin-bottom:20px">
+    <div class="c-ico">⚠️</div>
+    <div class="c-body">
+      <div class="c-title">Unofficial Calculator — For Planning Purposes Only</div>
+      <p>This calculator is <strong>not an official MOE tool</strong>. It has been developed by the school to help students and parents understand and navigate the changes coming with the new Singapore-Cambridge Secondary Education Certificate (SEC) from 2028. While every effort has been made to reflect the latest published criteria accurately, results are <strong>estimates only</strong>. Always verify eligibility requirements and cut-off points directly with MOE, the respective institutions, and the official <a href="https://www.moe.gov.sg/coursefinder" target="_blank" style="color:#9f1239;font-weight:700">MOE CourseFinder</a>. In case of any discrepancy, official information from institutions always takes precedence.</p>
+    </div>
+  </div>
 
   <div class="calc-shell">
     <div class="calc-tabs">
-      <button class="ctab on" onclick="switchCalc(event,'jc-calc')">🎓 JC / MI — L1R4 (with HMTL)</button>
+      <button class="ctab on" onclick="switchCalc(event,'jc-calc')">🎓 JC / MI — L1R4</button>
       <button class="ctab" onclick="switchCalc(event,'poly-calc')">🏛️ Polytechnic — ELR2B2</button>
       <button class="ctab" onclick="switchCalc(event,'ite-calc')">🔧 ITE — ELMAB3</button>
+      <button class="ctab" onclick="switchCalc(event,'arts-calc')">🎨 LASALLE / NAFA</button>
     </div>
 
     <!-- JC CALC -->
@@ -910,6 +1240,136 @@ tr:hover td{background:#fafcfe}
       </div>
     </div>
 
+    <!-- ARTS CALC (NEW) -->
+    <div class="calc-panel" id="arts-calc">
+      <div class="callout purple" style="margin-bottom:20px">
+        <div class="c-ico">🎨</div>
+        <div class="c-body">
+          <div class="c-title">LASALLE / NAFA Academic Eligibility (from AY2028)</div>
+          <p>This calculator checks whether your child meets the <strong>academic criteria</strong> for LASALLE/NAFA Year 1 (4-subject aggregate ≤ 21, excl. EL) and NAFA Foundation Programme (ELMAB3 ≤ 15 at G2, excl. CCA). Remember: academic eligibility alone does not guarantee a place — portfolio, audition, and interview are equally important.</p>
+        </div>
+      </div>
+
+      <div class="sec-lbl">English Language</div>
+      <div class="fg2" style="margin-bottom:16px">
+        <div>
+          <label class="calc-label">English Language (G3) — must be C6 or better for LASALLE/NAFA Yr 1</label>
+          <select class="calc-select" id="arts-el">
+            <option value="1">A1 — 1 pt</option><option value="2">A2 — 2 pts</option>
+            <option value="3">B3 — 3 pts</option><option value="4">B4 — 4 pts</option>
+            <option value="5">C5 — 5 pts</option><option value="6" selected>C6 — 6 pts</option>
+            <option value="7">D7 — 7 pts</option>
+          </select>
+        </div>
+        <div>
+          <label class="calc-label">Mathematics (G3 or G2 — for NFP ELMAB3)</label>
+          <select class="calc-select" id="arts-ma">
+            <option value="1">A1/A2/B3 at G3 → G2:1</option>
+            <option value="2" selected>B4/C5/C6 at G3 → G2:2</option>
+            <option value="3">D7 at G3 / G2:3</option>
+            <option value="4">E8 at G3 / G2:4</option>
+            <option value="5">Fail / G2:5</option>
+            <option value="6">G2:6 (absent)</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="sec-lbl">4-Subject Aggregate (LASALLE/NAFA Year 1) — 3 G3 + 1 G2, excluding EL</div>
+      <div style="font-size:12.5px;color:var(--muted);margin-bottom:12px">Enter 3 subjects at G3 and 1 subject at G2. English Language is excluded from this aggregate.</div>
+      <div class="fg4">
+        <div>
+          <label class="calc-label">G3 Subject 1</label>
+          <select class="calc-select" id="arts-g3a">
+            <option value="1">A1 — 1pt</option><option value="2" selected>A2 — 2pts</option>
+            <option value="3">B3 — 3pts</option><option value="4">B4 — 4pts</option>
+            <option value="5">C5 — 5pts</option><option value="6">C6 — 6pts</option><option value="7">D7 — 7pts</option><option value="8">E8 — 8pts</option>
+          </select>
+        </div>
+        <div>
+          <label class="calc-label">G3 Subject 2</label>
+          <select class="calc-select" id="arts-g3b">
+            <option value="1">A1 — 1pt</option><option value="2">A2 — 2pts</option>
+            <option value="3" selected>B3 — 3pts</option><option value="4">B4 — 4pts</option>
+            <option value="5">C5 — 5pts</option><option value="6">C6 — 6pts</option><option value="7">D7 — 7pts</option><option value="8">E8 — 8pts</option>
+          </select>
+        </div>
+        <div>
+          <label class="calc-label">G3 Subject 3</label>
+          <select class="calc-select" id="arts-g3c">
+            <option value="1">A1 — 1pt</option><option value="2">A2 — 2pts</option>
+            <option value="3">B3 — 3pts</option><option value="4" selected>B4 — 4pts</option>
+            <option value="5">C5 — 5pts</option><option value="6">C6 — 6pts</option><option value="7">D7 — 7pts</option><option value="8">E8 — 8pts</option>
+          </select>
+        </div>
+        <div>
+          <label class="calc-label">G2 Subject</label>
+          <select class="calc-select" id="arts-g2">
+            <option value="1">Grade 1</option><option value="2">Grade 2</option>
+            <option value="3" selected>Grade 3</option><option value="4">Grade 4</option>
+            <option value="5">Grade 5</option><option value="6">Grade 6</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="sec-lbl">3 Best Other Subjects (for NFP ELMAB3, at G2 level)</div>
+      <div style="font-size:12.5px;color:var(--muted);margin-bottom:12px">For NAFA Foundation Programme, ELMAB3 = EL + Maths + 3 Best subjects (all at G2, CCA excluded).</div>
+      <div class="fg3" style="margin-bottom:16px">
+        <div>
+          <label class="calc-label">Best Subject A (G2 equivalent)</label>
+          <select class="calc-select" id="arts-ba">
+            <option value="1">G2:1 / G3 A1–B3</option>
+            <option value="2" selected>G2:2 / G3 B4–C6</option>
+            <option value="3">G2:3 / G3 D7</option>
+            <option value="4">G2:4 / G3 E8</option>
+            <option value="5">G2:5 / G3 Fail</option>
+            <option value="6">G2:6 (absent)</option>
+          </select>
+        </div>
+        <div>
+          <label class="calc-label">2nd Best Subject B (G2)</label>
+          <select class="calc-select" id="arts-bb">
+            <option value="1">G2:1 / G3 A1–B3</option>
+            <option value="2">G2:2 / G3 B4–C6</option>
+            <option value="3" selected>G2:3 / G3 D7</option>
+            <option value="4">G2:4 / G3 E8</option>
+            <option value="5">G2:5 / G3 Fail</option>
+            <option value="6">G2:6 (absent)</option>
+          </select>
+        </div>
+        <div>
+          <label class="calc-label">3rd Best Subject B3 (G2)</label>
+          <select class="calc-select" id="arts-bc">
+            <option value="1">G2:1 / G3 A1–B3</option>
+            <option value="2">G2:2 / G3 B4–C6</option>
+            <option value="3">G2:3 / G3 D7</option>
+            <option value="4" selected>G2:4 / G3 E8</option>
+            <option value="5">G2:5 / G3 Fail</option>
+            <option value="6">G2:6 (absent)</option>
+          </select>
+        </div>
+      </div>
+
+      <button class="calc-run purple-btn" onclick="calcArts()">Check Arts Institution Eligibility →</button>
+
+      <div class="result-box" id="arts-result">
+        <div class="result-header purple-header">
+          <div>
+            <div class="rscore-n" id="arts-agg-score"></div>
+            <div class="rscore-l">4-Subj Agg (excl. EL)</div>
+          </div>
+          <div class="rbk">
+            <div class="rbk-title">Score Breakdown</div>
+            <div id="arts-bkd"></div>
+          </div>
+        </div>
+        <div class="result-body">
+          <div class="e-title">Arts Institution Eligibility</div>
+          <div class="e-pills" id="arts-elig"></div>
+          <div class="rnote" id="arts-note"></div>
+        </div>
+      </div>
+    </div>
+
   </div><!-- end calc-shell -->
 
   <div class="icard">
@@ -918,9 +1378,9 @@ tr:hover td{background:#fafcfe}
       <li>For <strong>JC/MI</strong>: Lower is better. JC needs net L1R4 ≤ 16; MI needs ≤ 20</li>
       <li>For <strong>Poly</strong>: Lower is better. Most courses need net ELR2B2 ≤ 22</li>
       <li>For <strong>ITE</strong>: Lower is better. ELMAB3 ≤ 19 qualifies for Year 2 direct entry</li>
-      <li>HMTL helps for JC/MI — can serve as L1 and earn 2 bonus pts. Not used for Poly/ITE.</li>
-      <li>Bonus points are <em>subtracted</em> from raw score. JC/MI cap is 3 from 2028 (LEP is separate)</li>
-      <li>Always verify cut-offs on MOE CourseFinder — each course has its own MERs</li>
+      <li>For <strong>LASALLE/NAFA</strong>: 4-subject agg (3G3 + 1G2, excl. EL) ≤ 21 <em>and</em> G3 English must be C6 or better. NFP needs ELMAB3 ≤ 15</li>
+      <li>HMTL helps for JC/MI — can serve as L1 and earn 2 bonus pts. Not used for Poly/ITE/Arts.</li>
+      <li>Always verify cut-offs on MOE CourseFinder and institution websites — requirements may differ</li>
     </ul>
   </div>
 </div>
@@ -947,7 +1407,7 @@ tr:hover td{background:#fafcfe}
         <li><strong>AY2027</strong> — SEC exams at G1/G2/G3; EL &amp; MTL in September</li>
         <li><strong>AY2027 Poly</strong> — Higher NITEC poly guarantee starts</li>
         <li><strong>2028 JAE</strong> — L1R5 → L1R4; bonus cap → 3 pts</li>
-        <li><strong>AY2028</strong> — New Poly Yr 1, PFP, ITE Yr 2 rules apply</li>
+        <li><strong>AY2028</strong> — New Poly Yr 1, PFP, ITE Yr 2, LASALLE/NAFA rules apply</li>
       </ul>
     </div>
     <div class="icard">
@@ -957,7 +1417,8 @@ tr:hover td{background:#fafcfe}
         <li>Be aware all pathways — ITE and Poly lead to strong careers too</li>
         <li>For G2 students: consider taking some subjects at G3 to widen options</li>
         <li>If strong in Mother Tongue: consider HMTL — significant benefit for JC</li>
-        <li>Help set targets, and celebrate small wins as growth opportunities</li>
+        <li>Arts-inclined students: start building a portfolio early, regardless of grades</li>
+        <li>G1 students: focus on ITE Year 1 — the accelerated pathway is a real opportunity</li>
       </ul>
     </div>
   </div>
@@ -975,12 +1436,13 @@ tr:hover td{background:#fafcfe}
 </div><!-- main -->
 
 <script>
+const SECTION_IDS = ['overview','jc','poly','ite','arts','g1','calc','support'];
+
 function showSec(id){
   document.querySelectorAll('.sec').forEach(s=>s.classList.remove('on'));
   document.querySelectorAll('.ntab').forEach(b=>b.classList.remove('on'));
   document.getElementById(id).classList.add('on');
-  const ids=['overview','jc','poly','ite','calc','support'];
-  document.querySelectorAll('.ntab')[ids.indexOf(id)].classList.add('on');
+  document.querySelectorAll('.ntab')[SECTION_IDS.indexOf(id)].classList.add('on');
   window.scrollTo({top:0,behavior:'smooth'});
 }
 
@@ -1038,7 +1500,6 @@ function calcJC(){
   const cappedBonus = Math.min(preCap, 3);
   const net = raw - cappedBonus - lep;
 
-  // Breakdown rows
   const rows = [
     [`L1 (${l1src})`, l1],
     ['R1', r1], ['R2', r2], ['R3', r3], ['R4', r4],
@@ -1107,21 +1568,16 @@ function calcPoly(){
   box.classList.add('show');
   box.scrollIntoView({behavior:'smooth',block:'nearest'});
 }
+
 function toggleITELevel(){
   const lvl = document.getElementById('ite-level').value;
   const isG3 = lvl === 'g3';
   const isMix = lvl === 'mix';
-  const showG3 = isG3; // for pure G3, show G3 selects; for mix, show both via labels
   document.getElementById('ite-el-g2-wrap').style.display = (isG3) ? 'none' : 'block';
   document.getElementById('ite-el-g3-wrap').style.display = (isG3) ? 'block' : 'none';
   document.getElementById('ite-ma-g2-wrap').style.display = (isG3) ? 'none' : 'block';
   document.getElementById('ite-ma-g3-wrap').style.display = (isG3) ? 'block' : 'none';
   document.getElementById('ite-map-note').style.display = (isG3 || isMix) ? 'block' : 'none';
-}
-
-function getITEGrade(g2Id, g3Id, level, forcedEl){
-  // for the best subjects, they use unified G2-mapped labels already
-  return parseInt(document.getElementById(g2Id ? g2Id : g3Id).value);
 }
 
 function calcITE(){
@@ -1161,17 +1617,90 @@ function calcITE(){
     : `<span class="ep no">❌ Year 2 Direct Entry — need ELMAB3 ≤ 19</span>`;
   ep += `<span class="ep yes">✅ ITE Year 1 Entry (all students qualify)</span>`;
   if(total <= 12) ep += `<span class="ep yes">✅ PFP Eligible (ELMAB3 ≤ 12)</span>`;
+  if(total <= 15) ep += `<span class="ep arts">🎨 NAFA Foundation Prog. (ELMAB3 ≤ 15)</span>`;
 
   document.getElementById('ite-elig').innerHTML = ep;
 
   let note = `ELMAB3 = ${elRaw} + ${maRaw} + ${a} + ${b} + ${b3} = <strong>${total}</strong>. All grades computed at G2.`;
   if(isG3) note += ` G3 grades were auto-mapped to their G2 equivalents.`;
   if(total <= 19) note += ` Your child qualifies for <strong>ITE Year 2 direct entry</strong>, saving one year of study.`;
-  else note += ` Your child enters ITE <strong>Year 1</strong>. If they score GPA ≥ 3.7 in Year 1 Sem 1, a bridging pathway to Year 2 is available.`;
+  else note += ` Your child enters ITE <strong>Year 1</strong>. Students who perform well in Year 1 Sem 1 may be offered a bridging pathway to Year 2, shortening their overall course duration.`;
+  if(total <= 15) note += ` Also check out the <strong>NAFA Foundation Programme</strong> if arts is a passion!`;
   note += ` Use MOE CourseFinder to verify specific course MERs.`;
   document.getElementById('ite-note').innerHTML = note;
 
   const box = document.getElementById('ite-result');
+  box.classList.add('show');
+  box.scrollIntoView({behavior:'smooth', block:'nearest'});
+}
+
+function calcArts(){
+  const el    = parseInt(document.getElementById('arts-el').value);
+  const ma    = parseInt(document.getElementById('arts-ma').value);
+  const g3a   = parseInt(document.getElementById('arts-g3a').value);
+  const g3b   = parseInt(document.getElementById('arts-g3b').value);
+  const g3c   = parseInt(document.getElementById('arts-g3c').value);
+  const g2    = parseInt(document.getElementById('arts-g2').value);
+  const ba    = parseInt(document.getElementById('arts-ba').value);
+  const bb    = parseInt(document.getElementById('arts-bb').value);
+  const bc    = parseInt(document.getElementById('arts-bc').value);
+
+  // LASALLE/NAFA Year 1: 3 G3 + 1 G2, excluding EL
+  const lasalleAgg = g3a + g3b + g3c + g2;
+
+  // NAFA Foundation Programme: ELMAB3 (G2 level, excl. CCA)
+  const nafaElmab3 = el + ma + ba + bb + bc;
+
+  // EL pass check: G3 must be C6 or better (points ≤ 6)
+  const elPassesLasalle = el <= 6;  // A1(1)–C6(6) pass; D7(7) fails
+
+  const rows = [
+    ['G3 Subject 1', g3a],
+    ['G3 Subject 2', g3b],
+    ['G3 Subject 3', g3c],
+    ['G2 Subject', g2],
+    ['4-Subj Agg (excl. EL)', lasalleAgg],
+    ['─────', '─────'],
+    ['EL (G3, for eligibility check)', el + (el <= 6 ? ' ✅ C6 or better' : ' ❌ D7 or below — does not meet EL requirement')],
+    ['EL (G2 equiv, for NFP)', el],
+    ['Maths (G2 equiv, for NFP)', ma],
+    ['Best Subject A (G2)', ba],
+    ['Best Subject B (G2)', bb],
+    ['Best Subject B3 (G2)', bc],
+    ['NFP ELMAB3', nafaElmab3],
+  ];
+
+  document.getElementById('arts-bkd').innerHTML = rows.map(r=>`<div class="brow"><span>${r[0]}</span><span>${r[1]}</span></div>`).join('');
+  document.getElementById('arts-agg-score').textContent = lasalleAgg;
+
+  let ep = '';
+  if (lasalleAgg <= 21 && elPassesLasalle) {
+    ep += `<span class="ep arts">✅ LASALLE / NAFA Year 1 — both conditions met (agg ≤ 21 &amp; EL ≥ C6)</span>`;
+  } else if (lasalleAgg <= 21 && !elPassesLasalle) {
+    ep += `<span class="ep maybe">⚠️ LASALLE / NAFA Year 1 — aggregate met, but EL is below C6 (Condition 2 not met)</span>`;
+  } else if (lasalleAgg > 21 && elPassesLasalle) {
+    ep += `<span class="ep no">❌ LASALLE / NAFA Year 1 — aggregate is ${lasalleAgg} (need ≤ 21)</span>`;
+  } else {
+    ep += `<span class="ep no">❌ LASALLE / NAFA Year 1 — aggregate ${lasalleAgg} (need ≤ 21) AND EL below C6 (both conditions unmet)</span>`;
+  }
+  ep += nafaElmab3 <= 15
+    ? `<span class="ep arts">✅ NAFA Foundation Prog — ELMAB3 ≤ 15</span>`
+    : `<span class="ep no">❌ NAFA Foundation Prog — need ELMAB3 ≤ 15 (yours: ${nafaElmab3})</span>`;
+
+  document.getElementById('arts-elig').innerHTML = ep;
+
+  let note = `4-subject aggregate (3G3 + 1G2, excl. EL): <strong>${lasalleAgg}</strong>. NFP ELMAB3: <strong>${nafaElmab3}</strong>.`;
+  if (!elPassesLasalle) {
+    note += ` <strong>⚠️ English Language is D7 or below</strong> — Condition 2 for LASALLE/NAFA Year 1 requires G3 English to be C6 or better. Even if the aggregate is met, this condition must also be satisfied.`;
+  } else if (lasalleAgg <= 21) {
+    note += ` Academic criteria for LASALLE/NAFA Year 1 are met — but a <strong>portfolio, audition, and/or interview</strong> is required and carries significant weight.`;
+  } else {
+    note += ` The 4-subject aggregate needs to be 21 or below for LASALLE/NAFA Year 1 academic eligibility.`;
+  }
+  note += ` Always verify requirements directly on the <strong>LASALLE</strong> and <strong>NAFA</strong> websites as they may differ.`;
+  document.getElementById('arts-note').innerHTML = note;
+
+  const box = document.getElementById('arts-result');
   box.classList.add('show');
   box.scrollIntoView({behavior:'smooth', block:'nearest'});
 }
