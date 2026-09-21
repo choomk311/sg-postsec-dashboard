@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>SG Post-Secondary Pathways 2027</title>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,300&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -28,6 +28,9 @@
   --text: #1c1c28;
   --muted: #64748b;
   --border: #e2e8f0;
+  box-sizing:border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
 }
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
@@ -45,7 +48,7 @@ h1.hero-title em{color:#5eead4;font-style:italic}
 .kpi-n{font-family:'Fraunces',serif;font-size:1.75rem;color:#fbbf24;line-height:1}
 .kpi-l{font-size:11.5px;color:rgba(255,255,255,.5);margin-top:4px}
 
-.nav{background:var(--surface);border-bottom:2px solid var(--border);position:sticky;top:0;z-index:200;box-shadow:0 2px 20px rgba(0,0,0,.06)}
+.nav{background:var(--surface);border-bottom:2px solid var(--border);position:sticky;top:env(safe-area-inset-top, 0px);z-index:200;box-shadow:0 2px 20px rgba(0,0,0,.06)}
 .nav-inner{max-width:960px;margin:0 auto;display:flex;overflow-x:auto;scrollbar-width:none}
 .nav-inner::-webkit-scrollbar{display:none}
 .ntab{flex-shrink:0;padding:15px 20px;font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;font-weight:500;color:var(--muted);background:none;border:none;border-bottom:3px solid transparent;margin-bottom:-2px;cursor:pointer;transition:all .2s;white-space:nowrap}
@@ -78,6 +81,7 @@ h1.hero-title em{color:#5eead4;font-style:italic}
 .tbl-wrap{background:var(--surface);border-radius:16px;border:1.5px solid var(--border);overflow:hidden;margin-bottom:22px;box-shadow:0 2px 12px rgba(0,0,0,.04)}
 .tbl-head{background:var(--navy);color:#fff;padding:13px 18px;font-weight:600;font-size:13.5px;display:flex;align-items:center;gap:8px}
 .tbl-head.purple-head{background:linear-gradient(135deg,#5b21b6,#7c3aed)}
+.tbl-head.amber-head{background:linear-gradient(135deg,#92400e,#d97706)}
 table{width:100%;border-collapse:collapse}
 th{background:#f8fafc;padding:10px 14px;font-size:11.5px;font-weight:700;color:var(--muted);text-align:center;border-bottom:1.5px solid var(--border);text-transform:uppercase;letter-spacing:.05em;white-space:nowrap}
 th:first-child{text-align:left}
@@ -123,6 +127,9 @@ tr:hover td{background:#fafcfe}
 .callout.indigo p{color:#3730a3;font-size:13px;line-height:1.6}
 .callout.purple .c-title{color:#4c1d95}
 .callout.purple p{color:#5b21b6;font-size:13px;line-height:1.6}
+.callout ul{margin-top:8px;padding-left:18px}
+.callout li{font-size:13px;line-height:1.6;margin-bottom:3px}
+.callout.amber li{color:#92400e}
 .pill{display:inline-block;background:var(--navy);color:#d1fae5;font-size:11px;font-weight:700;padding:2px 10px;border-radius:100px;margin:0 3px}
 .pill-purple{display:inline-block;background:var(--purple);color:#f5f3ff;font-size:11px;font-weight:700;padding:2px 10px;border-radius:100px;margin:0 3px}
 .divider{height:1px;background:var(--border);margin:26px 0}
@@ -135,7 +142,9 @@ tr:hover td{background:#fafcfe}
 .arts-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.85);font-size:11px;font-weight:700;padding:4px 12px;border-radius:100px;margin-bottom:14px}
 
 .condition-card{background:var(--surface);border-radius:14px;padding:20px 22px;border:2px solid #ddd6fe;margin-bottom:12px}
+.condition-card.amber-card{border-color:#fcd34d}
 .condition-num{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;background:var(--purple);color:#fff;font-size:13px;font-weight:800;border-radius:50%;margin-right:10px;flex-shrink:0}
+.condition-card.amber-card .condition-num{background:var(--amber)}
 .condition-row{display:flex;align-items:flex-start;gap:0}
 .condition-text{flex:1;font-size:13.5px;color:var(--navy);line-height:1.6;font-weight:500}
 .condition-sub{font-size:12px;color:var(--muted);margin-top:4px;font-weight:400}
@@ -202,11 +211,14 @@ tr:hover td{background:#fafcfe}
 .calc-run:hover{background:var(--navy2);transform:translateY(-2px);box-shadow:0 8px 20px rgba(14,27,53,.25)}
 .calc-run.purple-btn{background:linear-gradient(135deg,#5b21b6,#7c3aed)}
 .calc-run.purple-btn:hover{background:linear-gradient(135deg,#4c1d95,#6d28d9)}
+.calc-run.amber-btn{background:linear-gradient(135deg,#92400e,#d97706)}
+.calc-run.amber-btn:hover{background:linear-gradient(135deg,#78350f,#b45309)}
 
 .result-box{margin-top:22px;border-radius:16px;overflow:hidden;border:1.5px solid var(--border);display:none}
 .result-box.show{display:block}
 .result-header{background:linear-gradient(135deg,var(--navy) 0%,var(--navy2) 100%);padding:20px 24px;display:flex;align-items:center;gap:20px;flex-wrap:wrap}
 .result-header.purple-header{background:linear-gradient(135deg,#2e1065,#5b21b6)}
+.result-header.amber-header{background:linear-gradient(135deg,#451a03,#b45309)}
 .rscore-n{font-family:'Fraunces',serif;font-size:3rem;font-weight:700;color:#fbbf24;line-height:1}
 .rscore-l{font-size:11px;color:rgba(255,255,255,.5);margin-top:3px;text-transform:uppercase;letter-spacing:.05em}
 .rbk{flex:1}
@@ -222,6 +234,14 @@ tr:hover td{background:#fafcfe}
 .ep.no{background:#f1f5f9;color:var(--muted);border:1.5px solid var(--border)}
 .ep.arts{background:var(--purple-pale);color:#4c1d95;border:1.5px solid #c4b5fd}
 .rnote{margin-top:14px;font-size:12px;color:var(--muted);line-height:1.6;padding:12px 14px;background:var(--surface);border-radius:10px;border:1px solid var(--border)}
+
+/* PFP checklist */
+.chk-list{display:flex;flex-direction:column;gap:8px;margin-top:4px}
+.chk-item{display:flex;gap:10px;align-items:flex-start;background:var(--surface);border:1.5px solid var(--border);border-radius:11px;padding:11px 14px;font-size:12.5px;line-height:1.55;color:#374151}
+.chk-item.pass{background:#f0fdf4;border-color:#86efac;color:#166534}
+.chk-item.fail{background:var(--rose-pale);border-color:#fda4af;color:#9f1239}
+.chk-ico{font-size:14px;flex-shrink:0;margin-top:1px}
+.chk-item strong{font-weight:700}
 
 .bonus-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(165px,1fr));gap:12px;margin-bottom:16px}
 .bcard{background:var(--surface);border:1.5px solid var(--border);border-radius:12px;padding:15px;text-align:center}
@@ -299,15 +319,15 @@ tr:hover td{background:#fafcfe}
     <div class="pw c3" onclick="showSec('poly')">
       <div class="pw-ico">🏛️</div>
       <div class="pw-name">Polytechnic Year 1</div>
-      <div class="pw-desc">3-year diploma. Now open to 4G3+1G2 students. Net ELR2B2 ≤ 22. HMTL not used here.</div>
+      <div class="pw-desc">3-year diploma. Now open to 4G3+1G2 students. Net ELR2B2 ≤ 22.</div>
       <div class="pw-chip">ELR2B2 ≤ 22</div>
       <div class="badge-new">Expanded</div>
     </div>
     <div class="pw c4" onclick="showSec('poly')">
       <div class="pw-ico">🔗</div>
       <div class="pw-name">Poly Foundation Prog (PFP)</div>
-      <div class="pw-desc">1-year bridge into polytechnic. Now open to G3 students for the first time from AY2028.</div>
-      <div class="pw-chip">ELMAB3 ≤ 12</div>
+      <div class="pw-desc">1-year bridge into polytechnic. Now open to G3 students for the first time from AY2028. Minimum subject grades apply.</div>
+      <div class="pw-chip">Raw ELMAB3 ≤ 12</div>
       <div class="badge-new">New Access</div>
     </div>
     <div class="pw c5" onclick="showSec('ite')">
@@ -387,7 +407,7 @@ tr:hover td{background:#fafcfe}
     <div class="c-ico">🌟</div>
     <div class="c-body">
       <div class="c-title">Higher Mother Tongue (HMTL) — Key Advantage for JC</div>
-      <p>If your child takes <strong>Higher Chinese / Higher Malay / Higher Tamil</strong>, their HMTL grade can be used as <strong>L1</strong> if it scores better (lower points) than English Language. This can meaningfully reduce the L1R4 total. Additionally, scoring A1–C6 in <em>both</em> EL and HMTL earns <strong>2 bonus points</strong> (subject to cap). HMTL is <u>not</u> used in polytechnic ELR2B2 calculations.</p>
+      <p>If your child takes <strong>Higher Chinese / Higher Malay / Higher Tamil</strong>, their HMTL grade can be used as <strong>L1</strong> if it scores better (lower points) than English Language. This can meaningfully reduce the L1R4 total. Additionally, scoring A1–C6 in <em>both</em> EL and HMTL earns <strong>2 bonus points</strong> (subject to cap).</p>
     </div>
   </div>
 
@@ -462,7 +482,7 @@ tr:hover td{background:#fafcfe}
 <!-- POLYTECHNIC -->
 <div class="sec" id="poly">
   <h2 class="pg-title">Polytechnic Pathways</h2>
-  <p class="pg-sub">Two routes into polytechnic — direct Year 1 entry and the Polytechnic Foundation Programme (PFP). HMTL is not part of the poly aggregate calculation.</p>
+  <p class="pg-sub">Two routes into polytechnic — direct Year 1 entry (ELR2B2) and the Polytechnic Foundation Programme (ELMAB3). The two use <strong>different aggregates and different rules</strong>, so they have separate calculators.</p>
 
   <div class="callout green">
     <div class="c-ico">🆕</div>
@@ -480,7 +500,7 @@ tr:hover td{background:#fafcfe}
         <li><strong>R1, R2</strong> — Two relevant subjects for your course (G3)</li>
         <li><strong>B1</strong> — Best remaining subject (G3 points)</li>
         <li><strong>B2</strong> — 2nd best remaining (mapped to G2 scale)</li>
-        <li>Subtract CCA bonus for net score. HMTL not included.</li>
+        <li>Subtract CCA bonus for the net score</li>
       </ul>
     </div>
     <div class="icard">
@@ -495,15 +515,45 @@ tr:hover td{background:#fafcfe}
     </div>
   </div>
 
+  <div class="callout indigo">
+    <div class="c-ico">🈶</div>
+    <div class="c-body">
+      <div class="c-title">Higher Mother Tongue and ELR2B2</div>
+      <p>HMTL <strong>can be counted as a Best (B) subject</strong> in the ELR2B2 aggregate. However, there is <strong>no additional bonus point awarded</strong> for the use of HMTL as part of the ELR2B2 computation.</p>
+    </div>
+  </div>
+
   <div class="divider"></div>
   <h3 style="font-family:'Fraunces',serif;font-size:1.2rem;margin-bottom:8px;color:var(--navy)">Polytechnic Foundation Programme (PFP)</h3>
-  <p style="font-size:13.5px;color:var(--muted);margin-bottom:18px">1-year programme → enters Poly Year 2. Expanded to G3 students from AY2028.</p>
+  <p style="font-size:13.5px;color:var(--muted);margin-bottom:18px">1-year programme → enters Poly Year 2. Expanded to G3 students from AY2028. Uses the <strong>ELMAB3</strong> aggregate at N(A)-Level (G2) standard — not ELR2B2.</p>
 
   <div class="callout amber">
     <div class="c-ico">🔓</div>
     <div class="c-body">
       <div class="c-title">PFP Expanded to G3 Students from 2028</div>
-      <p>Now open to G3 or mixed G2+G3 students. G3 grades mapped to G2 equivalents. ELMAB3 eligibility stays at <span class="pill">≤ 12 points</span>. Students enter 3 broad clusters, not a specific diploma.</p>
+      <p>Now open to G3 or mixed G2+G3 students, with G3 grades mapped to their G2 equivalents. Students enter one of 3 broad clusters rather than a specific diploma.</p>
+    </div>
+  </div>
+
+  <div class="callout rose">
+    <div class="c-ico">📌</div>
+    <div class="c-body">
+      <div class="c-title">All Four PFP Conditions Must Be Met</div>
+      <p>The aggregate alone is not enough — minimum subject grades apply as well:</p>
+      <ul>
+        <li><strong>ELMAB3 raw aggregate ≤ 12 points</strong> (English, Maths, Best 3 subjects), <strong>excluding CCA bonus points</strong></li>
+        <li><strong>English Language</strong> and <strong>Mathematics / Additional Mathematics</strong>: at least N(A)-Level Grade 3</li>
+        <li><strong>One relevant subject</strong>: at least N(A)-Level Grade 3</li>
+        <li><strong>The two other subjects</strong> making up the ELMAB3 aggregate: at least N(A)-Level Grade 4</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout sky">
+    <div class="c-ico">🧮</div>
+    <div class="c-body">
+      <div class="c-title">Use the dedicated PFP calculator</div>
+      <p>Because PFP uses a different aggregate and has minimum grade requirements, it now has its <strong>own tab</strong> in the Score Calculator — with G3 grades shown alongside their G2 equivalents in every dropdown, so G2 and G3 students can both key in their results easily.</p>
     </div>
   </div>
 
@@ -701,7 +751,7 @@ tr:hover td{background:#fafcfe}
     <div class="c-ico">💡</div>
     <div class="c-body">
       <div class="c-title">Advice for Arts-Inclined Students</div>
-      <p>If your child dreams of studying at LASALLE or NAFA, start building their portfolio early — creative work carries significant weight. Academic grades open the door but the portfolio, audition, or interview is what secures a place. Use the ELMAB3 calculator (under Score Calculator) to check NFP eligibility, and always verify current requirements directly on the <strong>LASALLE</strong> and <strong>NAFA</strong> websites as requirements may differ between institutions and courses.</p>
+      <p>If your child dreams of studying at LASALLE or NAFA, start building their portfolio early — creative work carries significant weight. Academic grades open the door but the portfolio, audition, or interview is what secures a place. Use the LASALLE / NAFA tab in the Score Calculator to check eligibility, and always verify current requirements directly on the <strong>LASALLE</strong> and <strong>NAFA</strong> websites as requirements may differ between institutions and courses.</p>
     </div>
   </div>
 </div>
@@ -838,12 +888,13 @@ tr:hover td{background:#fafcfe}
 <!-- CALCULATOR -->
 <div class="sec" id="calc">
   <h2 class="pg-title">Score Calculator</h2>
-  <p class="pg-sub">Four calculators — JC/MI (L1R4 with full HMTL support), Polytechnic (ELR2B2), ITE (ELMAB3), and LASALLE/NAFA. All updated for the 2028 intake rules.</p>
+  <p class="pg-sub">Five calculators — JC/MI (L1R4 with full HMTL support), Polytechnic Year 1 (ELR2B2), PFP (ELMAB3 with minimum grade checks), ITE (ELMAB3), and LASALLE/NAFA. All updated for the 2028 intake rules.</p>
 
   <div class="calc-shell">
     <div class="calc-tabs">
       <button class="ctab on" onclick="switchCalc(event,'jc-calc')">🎓 JC / MI — L1R4</button>
-      <button class="ctab" onclick="switchCalc(event,'poly-calc')">🏛️ Polytechnic — ELR2B2</button>
+      <button class="ctab" onclick="switchCalc(event,'poly-calc')">🏛️ Polytechnic Year 1 — ELR2B2</button>
+      <button class="ctab" onclick="switchCalc(event,'pfp-calc')">🔗 PFP — ELMAB3</button>
       <button class="ctab" onclick="switchCalc(event,'ite-calc')">🔧 ITE — ELMAB3</button>
       <button class="ctab" onclick="switchCalc(event,'arts-calc')">🎨 LASALLE / NAFA</button>
     </div>
@@ -1014,11 +1065,11 @@ tr:hover td{background:#fafcfe}
 
     <!-- POLY CALC -->
     <div class="calc-panel" id="poly-calc">
-      <div class="callout sky" style="margin-bottom:20px">
+      <div class="callout indigo" style="margin-bottom:20px">
         <div class="c-ico">ℹ️</div>
         <div class="c-body">
-          <div class="c-title">HMTL not used in Poly calculations</div>
-          <p>The polytechnic ELR2B2 aggregate uses English Language, two Relevant subjects, and two Best subjects only. HMTL does not factor in. Use the JC calculator if your child takes HMTL and is considering JC.</p>
+          <div class="c-title">About the ELR2B2 aggregate</div>
+          <p>ELR2B2 = English Language + two Relevant subjects + two Best subjects. Higher Mother Tongue <strong>can be used as a Best subject</strong> — but there is <strong>no additional bonus point awarded for the use of HMTL as part of the ELR2B2 computation</strong>. This tab is for <strong>Polytechnic Year 1 direct entry only</strong>; PFP uses a different aggregate and has its own tab.</p>
         </div>
       </div>
 
@@ -1036,7 +1087,7 @@ tr:hover td{background:#fafcfe}
       </div>
 
       <div class="sec-lbl">Relevant Subjects (R1 &amp; R2)</div>
-      <div style="font-size:12.5px;color:var(--muted);margin-bottom:12px">Subjects most relevant to your target polytechnic course — e.g. Maths + Physics for Engineering</div>
+      <div style="font-size:12.5px;color:var(--muted);margin-bottom:12px">Subjects most relevant to your target polytechnic course — e.g. Maths + Physics for Engineering. The relevant subjects differ by course; check MOE CourseFinder for the exact R1/R2 subjects for each diploma.</div>
       <div class="fg2" style="margin-bottom:16px">
         <div>
           <label class="calc-label">R1 — 1st Relevant Subject (G3)</label>
@@ -1059,7 +1110,7 @@ tr:hover td{background:#fafcfe}
       </div>
 
       <div class="sec-lbl">Best Subjects (B1 &amp; B2)</div>
-      <div style="font-size:12.5px;color:var(--muted);margin-bottom:12px">B1 keeps its G3 points. B2 is <strong>automatically converted</strong> to G2 scale — select your G3 grade and we will map it.</div>
+      <div style="font-size:12.5px;color:var(--muted);margin-bottom:12px">B1 keeps its G3 points. B2 is <strong>automatically converted</strong> to G2 scale — select your G3 grade and we will map it. Higher Mother Tongue may be used here as a Best subject.</div>
       <div class="fg2" style="margin-bottom:16px">
         <div>
           <label class="calc-label">B1 — Best remaining subject (G3)</label>
@@ -1073,11 +1124,11 @@ tr:hover td{background:#fafcfe}
         <div>
           <label class="calc-label">B2 — 2nd best subject (G3 grade, auto-mapped to G2)</label>
           <select class="calc-select" id="p-b2">
-            <option value="1">A1 / A2 / B3 at G3  →  G2 Grade 1</option>
-            <option value="2" selected>B4 / C5 / C6 at G3  →  G2 Grade 2</option>
-            <option value="3">D7 at G3  →  G2 Grade 3</option>
-            <option value="4">E8 at G3  →  G2 Grade 4</option>
-            <option value="5">Fail (9) at G3  →  G2 Grade 5</option>
+            <option value="1">G3 A1 / A2 / B3  →  G2 Grade 1</option>
+            <option value="2" selected>G3 B4 / C5 / C6  →  G2 Grade 2</option>
+            <option value="3">G3 D7  →  G2 Grade 3</option>
+            <option value="4">G3 E8  →  G2 Grade 4</option>
+            <option value="5">G3 F9 (Fail)  →  G2 Grade 5</option>
           </select>
         </div>
       </div>
@@ -1115,6 +1166,125 @@ tr:hover td{background:#fafcfe}
       </div>
     </div>
 
+    <!-- PFP CALC -->
+    <div class="calc-panel" id="pfp-calc">
+      <div class="callout amber" style="margin-bottom:20px">
+        <div class="c-ico">🔗</div>
+        <div class="c-body">
+          <div class="c-title">Polytechnic Foundation Programme (PFP) — all four conditions must be met</div>
+          <p>PFP uses the <strong>ELMAB3</strong> aggregate at N(A)-Level (G2) standard — not ELR2B2 — and adds minimum subject grades:</p>
+          <ul>
+            <li>ELMAB3 <strong>raw</strong> aggregate ≤ <strong>12 points</strong>, <strong>excluding CCA bonus points</strong></li>
+            <li>English Language and Mathematics / Additional Mathematics: at least <strong>Grade 3</strong></li>
+            <li>One relevant subject: at least <strong>Grade 3</strong></li>
+            <li>The two other subjects in the aggregate: at least <strong>Grade 4</strong></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="callout sky" style="margin-bottom:20px">
+        <div class="c-ico">🗺️</div>
+        <div class="c-body">
+          <div class="c-title">Taking subjects at G3? Just pick the matching row</div>
+          <p>Every dropdown below shows the <strong>N(A)-Level (G2) grade together with its G3 equivalent</strong> — e.g. "G2 Grade 2 / G3 B4–C6". G2 students read the left side, G3 students read the right side. No separate conversion needed.</p>
+        </div>
+      </div>
+
+      <div class="sec-lbl">Step 1 — English Language &amp; Mathematics (minimum Grade 3)</div>
+      <div class="fg2" style="margin-bottom:16px">
+        <div>
+          <label class="calc-label">English Language</label>
+          <select class="calc-select" id="pfp-el">
+            <option value="1">G2 Grade 1 / G3 A1–B3</option>
+            <option value="2" selected>G2 Grade 2 / G3 B4–C6</option>
+            <option value="3">G2 Grade 3 / G3 D7</option>
+            <option value="4">G2 Grade 4 / G3 E8 ⚠️ below PFP minimum</option>
+            <option value="5">G2 Grade 5 / G3 F9 ⚠️ below PFP minimum</option>
+            <option value="6">G2 Grade 6 ⚠️ below PFP minimum</option>
+          </select>
+        </div>
+        <div>
+          <label class="calc-label">Mathematics / Additional Mathematics</label>
+          <select class="calc-select" id="pfp-ma">
+            <option value="1">G2 Grade 1 / G3 A1–B3</option>
+            <option value="2" selected>G2 Grade 2 / G3 B4–C6</option>
+            <option value="3">G2 Grade 3 / G3 D7</option>
+            <option value="4">G2 Grade 4 / G3 E8 ⚠️ below PFP minimum</option>
+            <option value="5">G2 Grade 5 / G3 F9 ⚠️ below PFP minimum</option>
+            <option value="6">G2 Grade 6 ⚠️ below PFP minimum</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="sec-lbl">Step 2 — Relevant subject (minimum Grade 3)</div>
+      <div style="font-size:12.5px;color:var(--muted);margin-bottom:12px">One of the three "Best" subjects must be a subject relevant to the PFP cluster your child is applying to. Select its grade here.</div>
+      <div class="fg2" style="margin-bottom:16px">
+        <div>
+          <label class="calc-label">Relevant subject</label>
+          <select class="calc-select" id="pfp-rel">
+            <option value="1">G2 Grade 1 / G3 A1–B3</option>
+            <option value="2" selected>G2 Grade 2 / G3 B4–C6</option>
+            <option value="3">G2 Grade 3 / G3 D7</option>
+            <option value="4">G2 Grade 4 / G3 E8 ⚠️ below PFP minimum</option>
+            <option value="5">G2 Grade 5 / G3 F9 ⚠️ below PFP minimum</option>
+            <option value="6">G2 Grade 6 ⚠️ below PFP minimum</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="sec-lbl">Step 3 — The two other subjects in the aggregate (minimum Grade 4)</div>
+      <div class="fg2" style="margin-bottom:16px">
+        <div>
+          <label class="calc-label">Other subject 1</label>
+          <select class="calc-select" id="pfp-o1">
+            <option value="1">G2 Grade 1 / G3 A1–B3</option>
+            <option value="2">G2 Grade 2 / G3 B4–C6</option>
+            <option value="3" selected>G2 Grade 3 / G3 D7</option>
+            <option value="4">G2 Grade 4 / G3 E8</option>
+            <option value="5">G2 Grade 5 / G3 F9 ⚠️ below PFP minimum</option>
+            <option value="6">G2 Grade 6 ⚠️ below PFP minimum</option>
+          </select>
+        </div>
+        <div>
+          <label class="calc-label">Other subject 2</label>
+          <select class="calc-select" id="pfp-o2">
+            <option value="1">G2 Grade 1 / G3 A1–B3</option>
+            <option value="2">G2 Grade 2 / G3 B4–C6</option>
+            <option value="3" selected>G2 Grade 3 / G3 D7</option>
+            <option value="4">G2 Grade 4 / G3 E8</option>
+            <option value="5">G2 Grade 5 / G3 F9 ⚠️ below PFP minimum</option>
+            <option value="6">G2 Grade 6 ⚠️ below PFP minimum</option>
+          </select>
+        </div>
+      </div>
+
+      <div style="padding:12px 15px;background:var(--rose-pale);border:1px solid #fda4af;border-radius:10px;font-size:12.5px;color:#9f1239;line-height:1.6;margin-bottom:16px">
+        <strong>Note:</strong> CCA bonus points are <strong>not</strong> deducted for PFP — eligibility is assessed on the <strong>raw</strong> ELMAB3 aggregate. That is why there is no CCA field on this tab.
+      </div>
+
+      <button class="calc-run amber-btn" onclick="calcPFP()">Check PFP Eligibility →</button>
+
+      <div class="result-box" id="pfp-result">
+        <div class="result-header amber-header">
+          <div>
+            <div class="rscore-n" id="pfp-score"></div>
+            <div class="rscore-l">Raw ELMAB3 (excl. CCA)</div>
+          </div>
+          <div class="rbk">
+            <div class="rbk-title">Score Breakdown</div>
+            <div id="pfp-bkd"></div>
+          </div>
+        </div>
+        <div class="result-body">
+          <div class="e-title">Overall Result</div>
+          <div class="e-pills" id="pfp-elig"></div>
+          <div class="e-title" style="margin-top:18px">Condition Checklist</div>
+          <div class="chk-list" id="pfp-chk"></div>
+          <div class="rnote" id="pfp-note"></div>
+        </div>
+      </div>
+    </div>
+
     <!-- ITE CALC -->
     <div class="calc-panel" id="ite-calc">
       <div class="callout amber" style="margin-bottom:20px">
@@ -1145,7 +1315,7 @@ tr:hover td{background:#fafcfe}
       </div>
 
       <div id="ite-map-note" style="display:none;margin-bottom:14px;padding:11px 15px;background:var(--indigo-pale);border-radius:10px;border:1px solid #c7d2fe;font-size:12.5px;color:#3730a3;line-height:1.6">
-        <strong>G3 → G2 Mapping:</strong> A1/A2/B3 → 1 · B4/C5/C6 → 2 · D7 → 3 · E8 → 4 · Fail(9) → 5. Select your G3 grade and the G2 equivalent is shown automatically.
+        <strong>G3 → G2 Mapping:</strong> G3 A1/A2/B3 → G2 Grade 1 · G3 B4/C5/C6 → G2 Grade 2 · G3 D7 → G2 Grade 3 · G3 E8 → G2 Grade 4 · G3 F9 (Fail) → G2 Grade 5. Select your G3 grade and the G2 equivalent is shown automatically.
       </div>
 
       <div class="sec-lbl">Step 2 — English Language (E)</div>
@@ -1153,17 +1323,17 @@ tr:hover td{background:#fafcfe}
         <div id="ite-el-g2-wrap">
           <label class="calc-label">English Language — G2 Grade</label>
           <select class="calc-select" id="ite-el-g2">
-            <option value="1">Grade 1</option><option value="2">Grade 2</option>
-            <option value="3" selected>Grade 3</option><option value="4">Grade 4</option>
-            <option value="5">Grade 5</option><option value="6">Grade 6</option>
+            <option value="1">G2 Grade 1</option><option value="2">G2 Grade 2</option>
+            <option value="3" selected>G2 Grade 3</option><option value="4">G2 Grade 4</option>
+            <option value="5">G2 Grade 5</option><option value="6">G2 Grade 6</option>
           </select>
         </div>
         <div id="ite-el-g3-wrap" style="display:none">
           <label class="calc-label">English Language — G3 Grade (auto-mapped)</label>
           <select class="calc-select" id="ite-el-g3">
-            <option value="1">A1 → G2:1</option><option value="1">A2 → G2:1</option><option value="1">B3 → G2:1</option>
-            <option value="2">B4 → G2:2</option><option value="2">C5 → G2:2</option><option value="2">C6 → G2:2</option>
-            <option value="3" selected>D7 → G2:3</option><option value="4">E8 → G2:4</option><option value="5">9 (Fail) → G2:5</option>
+            <option value="1">G3 A1 → G2 Grade 1</option><option value="1">G3 A2 → G2 Grade 1</option><option value="1">G3 B3 → G2 Grade 1</option>
+            <option value="2">G3 B4 → G2 Grade 2</option><option value="2">G3 C5 → G2 Grade 2</option><option value="2">G3 C6 → G2 Grade 2</option>
+            <option value="3" selected>G3 D7 → G2 Grade 3</option><option value="4">G3 E8 → G2 Grade 4</option><option value="5">G3 F9 (Fail) → G2 Grade 5</option>
           </select>
         </div>
       </div>
@@ -1173,52 +1343,55 @@ tr:hover td{background:#fafcfe}
         <div id="ite-ma-g2-wrap">
           <label class="calc-label">Mathematics — G2 Grade</label>
           <select class="calc-select" id="ite-ma-g2">
-            <option value="1">Grade 1</option><option value="2">Grade 2</option>
-            <option value="3" selected>Grade 3</option><option value="4">Grade 4</option>
-            <option value="5">Grade 5</option><option value="6">Grade 6</option>
+            <option value="1">G2 Grade 1</option><option value="2">G2 Grade 2</option>
+            <option value="3" selected>G2 Grade 3</option><option value="4">G2 Grade 4</option>
+            <option value="5">G2 Grade 5</option><option value="6">G2 Grade 6</option>
           </select>
         </div>
         <div id="ite-ma-g3-wrap" style="display:none">
           <label class="calc-label">Mathematics — G3 Grade (auto-mapped)</label>
           <select class="calc-select" id="ite-ma-g3">
-            <option value="1">A1 → G2:1</option><option value="1">A2 → G2:1</option><option value="1">B3 → G2:1</option>
-            <option value="2">B4 → G2:2</option><option value="2">C5 → G2:2</option><option value="2">C6 → G2:2</option>
-            <option value="3" selected>D7 → G2:3</option><option value="4">E8 → G2:4</option><option value="5">9 (Fail) → G2:5</option>
+            <option value="1">G3 A1 → G2 Grade 1</option><option value="1">G3 A2 → G2 Grade 1</option><option value="1">G3 B3 → G2 Grade 1</option>
+            <option value="2">G3 B4 → G2 Grade 2</option><option value="2">G3 C5 → G2 Grade 2</option><option value="2">G3 C6 → G2 Grade 2</option>
+            <option value="3" selected>G3 D7 → G2 Grade 3</option><option value="4">G3 E8 → G2 Grade 4</option><option value="5">G3 F9 (Fail) → G2 Grade 5</option>
           </select>
         </div>
       </div>
 
       <div class="sec-lbl">Step 4 — 3 Best Subjects (A, B, B3)</div>
-      <div style="font-size:12.5px;color:var(--muted);margin-bottom:12px">Select your child's 3 best remaining subjects. For mixed G2/G3, choose the appropriate grade for each.</div>
+      <div style="font-size:12.5px;color:var(--muted);margin-bottom:12px">Select your child's 3 best remaining subjects. Each option shows the G2 grade with its G3 equivalent, so mixed G2/G3 combinations can be keyed in directly.</div>
       <div class="fg3" style="margin-bottom:16px">
         <div>
           <label class="calc-label">Best Subject A</label>
           <select class="calc-select" id="ite-a">
-            <option value="1">G2:1 / G3 A1–B3</option>
-            <option value="2" selected>G2:2 / G3 B4–C6</option>
-            <option value="3">G2:3 / G3 D7</option>
-            <option value="4">G2:4 / G3 E8</option>
-            <option value="5">G2:5 / G3 Fail</option>
+            <option value="1">G2 Grade 1 / G3 A1–B3</option>
+            <option value="2" selected>G2 Grade 2 / G3 B4–C6</option>
+            <option value="3">G2 Grade 3 / G3 D7</option>
+            <option value="4">G2 Grade 4 / G3 E8</option>
+            <option value="5">G2 Grade 5 / G3 F9 (Fail)</option>
+            <option value="6">G2 Grade 6</option>
           </select>
         </div>
         <div>
           <label class="calc-label">2nd Best Subject B</label>
           <select class="calc-select" id="ite-b">
-            <option value="1">G2:1 / G3 A1–B3</option>
-            <option value="2">G2:2 / G3 B4–C6</option>
-            <option value="3" selected>G2:3 / G3 D7</option>
-            <option value="4">G2:4 / G3 E8</option>
-            <option value="5">G2:5 / G3 Fail</option>
+            <option value="1">G2 Grade 1 / G3 A1–B3</option>
+            <option value="2">G2 Grade 2 / G3 B4–C6</option>
+            <option value="3" selected>G2 Grade 3 / G3 D7</option>
+            <option value="4">G2 Grade 4 / G3 E8</option>
+            <option value="5">G2 Grade 5 / G3 F9 (Fail)</option>
+            <option value="6">G2 Grade 6</option>
           </select>
         </div>
         <div>
           <label class="calc-label">3rd Best Subject B3</label>
           <select class="calc-select" id="ite-b3">
-            <option value="1">G2:1 / G3 A1–B3</option>
-            <option value="2">G2:2 / G3 B4–C6</option>
-            <option value="3">G2:3 / G3 D7</option>
-            <option value="4" selected>G2:4 / G3 E8</option>
-            <option value="5">G2:5 / G3 Fail</option>
+            <option value="1">G2 Grade 1 / G3 A1–B3</option>
+            <option value="2">G2 Grade 2 / G3 B4–C6</option>
+            <option value="3">G2 Grade 3 / G3 D7</option>
+            <option value="4" selected>G2 Grade 4 / G3 E8</option>
+            <option value="5">G2 Grade 5 / G3 F9 (Fail)</option>
+            <option value="6">G2 Grade 6</option>
           </select>
         </div>
       </div>
@@ -1268,14 +1441,14 @@ tr:hover td{background:#fafcfe}
           </select>
         </div>
         <div>
-          <label class="calc-label">Mathematics (G3 or G2 — for NFP ELMAB3)</label>
+          <label class="calc-label">Mathematics (for NFP ELMAB3)</label>
           <select class="calc-select" id="arts-ma">
-            <option value="1">A1/A2/B3 at G3 → G2:1</option>
-            <option value="2" selected>B4/C5/C6 at G3 → G2:2</option>
-            <option value="3">D7 at G3 / G2:3</option>
-            <option value="4">E8 at G3 / G2:4</option>
-            <option value="5">Fail / G2:5</option>
-            <option value="6">G2:6 (absent)</option>
+            <option value="1">G2 Grade 1 / G3 A1–B3</option>
+            <option value="2" selected>G2 Grade 2 / G3 B4–C6</option>
+            <option value="3">G2 Grade 3 / G3 D7</option>
+            <option value="4">G2 Grade 4 / G3 E8</option>
+            <option value="5">G2 Grade 5 / G3 F9 (Fail)</option>
+            <option value="6">G2 Grade 6 (absent)</option>
           </select>
         </div>
       </div>
@@ -1310,9 +1483,9 @@ tr:hover td{background:#fafcfe}
         <div>
           <label class="calc-label">G2 Subject</label>
           <select class="calc-select" id="arts-g2">
-            <option value="1">Grade 1</option><option value="2">Grade 2</option>
-            <option value="3" selected>Grade 3</option><option value="4">Grade 4</option>
-            <option value="5">Grade 5</option><option value="6">Grade 6</option>
+            <option value="1">G2 Grade 1</option><option value="2">G2 Grade 2</option>
+            <option value="3" selected>G2 Grade 3</option><option value="4">G2 Grade 4</option>
+            <option value="5">G2 Grade 5</option><option value="6">G2 Grade 6</option>
           </select>
         </div>
       </div>
@@ -1334,36 +1507,36 @@ tr:hover td{background:#fafcfe}
       <div style="font-size:12.5px;color:var(--muted);margin-bottom:12px">For NAFA Foundation Programme, ELMAB3 = EL + Maths + 3 Best subjects (all at G2, CCA excluded).</div>
       <div class="fg3" style="margin-bottom:16px">
         <div>
-          <label class="calc-label">Best Subject A (G2 equivalent)</label>
+          <label class="calc-label">Best Subject A</label>
           <select class="calc-select" id="arts-ba">
-            <option value="1">G2:1 / G3 A1–B3</option>
-            <option value="2" selected>G2:2 / G3 B4–C6</option>
-            <option value="3">G2:3 / G3 D7</option>
-            <option value="4">G2:4 / G3 E8</option>
-            <option value="5">G2:5 / G3 Fail</option>
-            <option value="6">G2:6 (absent)</option>
+            <option value="1">G2 Grade 1 / G3 A1–B3</option>
+            <option value="2" selected>G2 Grade 2 / G3 B4–C6</option>
+            <option value="3">G2 Grade 3 / G3 D7</option>
+            <option value="4">G2 Grade 4 / G3 E8</option>
+            <option value="5">G2 Grade 5 / G3 F9 (Fail)</option>
+            <option value="6">G2 Grade 6 (absent)</option>
           </select>
         </div>
         <div>
-          <label class="calc-label">2nd Best Subject B (G2)</label>
+          <label class="calc-label">2nd Best Subject B</label>
           <select class="calc-select" id="arts-bb">
-            <option value="1">G2:1 / G3 A1–B3</option>
-            <option value="2">G2:2 / G3 B4–C6</option>
-            <option value="3" selected>G2:3 / G3 D7</option>
-            <option value="4">G2:4 / G3 E8</option>
-            <option value="5">G2:5 / G3 Fail</option>
-            <option value="6">G2:6 (absent)</option>
+            <option value="1">G2 Grade 1 / G3 A1–B3</option>
+            <option value="2">G2 Grade 2 / G3 B4–C6</option>
+            <option value="3" selected>G2 Grade 3 / G3 D7</option>
+            <option value="4">G2 Grade 4 / G3 E8</option>
+            <option value="5">G2 Grade 5 / G3 F9 (Fail)</option>
+            <option value="6">G2 Grade 6 (absent)</option>
           </select>
         </div>
         <div>
-          <label class="calc-label">3rd Best Subject B3 (G2)</label>
+          <label class="calc-label">3rd Best Subject B3</label>
           <select class="calc-select" id="arts-bc">
-            <option value="1">G2:1 / G3 A1–B3</option>
-            <option value="2">G2:2 / G3 B4–C6</option>
-            <option value="3">G2:3 / G3 D7</option>
-            <option value="4" selected>G2:4 / G3 E8</option>
-            <option value="5">G2:5 / G3 Fail</option>
-            <option value="6">G2:6 (absent)</option>
+            <option value="1">G2 Grade 1 / G3 A1–B3</option>
+            <option value="2">G2 Grade 2 / G3 B4–C6</option>
+            <option value="3">G2 Grade 3 / G3 D7</option>
+            <option value="4" selected>G2 Grade 4 / G3 E8</option>
+            <option value="5">G2 Grade 5 / G3 F9 (Fail)</option>
+            <option value="6">G2 Grade 6 (absent)</option>
           </select>
         </div>
       </div>
@@ -1395,11 +1568,12 @@ tr:hover td{background:#fafcfe}
     <div class="icard-t"><span>💡</span> How to Read Your Score</div>
     <ul>
       <li>For <strong>JC/MI</strong>: Lower is better. Eligibility uses the <em>raw</em> L1R4 (before bonus deductions); JC needs raw ≤ 16, MI needs raw ≤ 20. EL must be C6 or better.</li>
-      <li>For <strong>Poly</strong>: Lower is better. Eligibility uses the <em>net</em> ELR2B2 (after CCA bonus deductions); most courses need net ≤ 22.</li>
-      <li>For <strong>ITE</strong>: Lower is better. ELMAB3 ≤ 19 qualifies for Year 2 direct entry</li>
+      <li>For <strong>Poly Year 1</strong>: Lower is better. Eligibility uses the <em>net</em> ELR2B2 (after CCA bonus deductions); most courses need net ≤ 22.</li>
+      <li>For <strong>PFP</strong>: Uses ELMAB3, not ELR2B2. Needs <em>raw</em> ELMAB3 ≤ 12 (CCA excluded) <strong>and</strong> all three minimum grade conditions.</li>
+      <li>For <strong>ITE</strong>: Lower is better. ELMAB3 ≤ 19 qualifies for Year 2 direct entry.</li>
       <li>For <strong>LASALLE/NAFA</strong>: Both conditions must be met — EL minimum grade (C6 or better) AND 4-subject agg (3G3 + 1G2, excl. EL) ≤ 21. NFP needs ELMAB3 ≤ 15.</li>
-      <li>HMTL helps for JC/MI — can serve as L1 and earn 2 bonus pts. Not used for Poly/ITE/Arts.</li>
-      <li>Always verify cut-offs on MOE CourseFinder and institution websites — requirements may differ</li>
+      <li>HMTL helps for JC/MI — it can serve as L1 and earn 2 bonus pts. It may count as a Best subject for Poly, but earns no bonus point there.</li>
+      <li>Always verify cut-offs on MOE CourseFinder and institution websites — requirements may differ.</li>
     </ul>
   </div>
 </div>
@@ -1413,7 +1587,7 @@ tr:hover td{background:#fafcfe}
     <div class="support-ico">🔍</div>
     <div class="support-info">
       <h3>MOE CourseFinder</h3>
-      <p>Explore every course by aggregate type, score, institution, and area of interest. Find exact cut-off points for polytechnics and JC programmes.</p>
+      <p>Explore every course by aggregate type, score, institution, and area of interest. Find exact cut-off points and the relevant R1/R2 subjects for each polytechnic diploma.</p>
     </div>
     <a href="https://www.moe.gov.sg/coursefinder" target="_blank" class="support-btn">Open CourseFinder →</a>
   </div>
@@ -1505,7 +1679,6 @@ function calcJC(){
   const lang = parseInt(document.getElementById('jc-lang').value)||0;
   const lep  = parseInt(document.getElementById('jc-lep').value)||0;
   const affil= parseInt(document.getElementById('jc-affil').value)||0;
-  const thr  = parseInt(document.getElementById('jc-target').value);
   const hasH = document.getElementById('hmtl-on').checked;
   const hmtl = hasH ? parseInt(document.getElementById('jc-hmtl').value) : 99;
 
@@ -1535,22 +1708,19 @@ function calcJC(){
   document.getElementById('jc-bkd').innerHTML = rows.map(r=>`<div class="brow"><span>${r[0]}</span><span>${r[1]}</span></div>`).join('');
   document.getElementById('jc-net-score').textContent = net;
 
-  // FIX 1 & 2: EL minimum grade check + eligibility against RAW score
-  // EL must be Grade 1–6 (C6 or better). D7 (value 7) fails the minimum English requirement.
   const elFailsMinJC = el >= 7;
   let ep = '';
   if (elFailsMinJC) {
-    ep += `<span class="ep no">❌ JC — English Language must be C6 or better (Grade 1–6); D7 fails the minimum requirement</span>`;
-    ep += `<span class="ep no">❌ MI — English Language must be C6 or better (Grade 1–6); D7 fails the minimum requirement</span>`;
+    ep += `<span class="ep no">❌ JC — English Language must be C6 or better (Grade 1–6)</span>`;
+    ep += `<span class="ep no">❌ MI — English Language must be C6 or better (Grade 1–6)</span>`;
   } else {
-    // JAE eligibility threshold is checked against the RAW L1R4 score, before bonus point deductions
     ep += raw<=16 ? `<span class="ep yes">✅ JC Eligible (raw L1R4 ${raw} ≤ 16)</span>` : `<span class="ep no">❌ JC — raw L1R4 ${raw} exceeds 16</span>`;
     ep += raw<=20 ? `<span class="ep yes">✅ MI Eligible (raw L1R4 ${raw} ≤ 20)</span>` : `<span class="ep no">❌ MI — raw L1R4 ${raw} exceeds 20</span>`;
   }
   document.getElementById('jc-elig').innerHTML = ep;
 
   let note = `Raw L1R4: <strong>${raw}</strong>. Bonus deducted: <strong>${cappedBonus + lep}</strong> pts (net: <strong>${net}</strong>).`;
-  if (elFailsMinJC) note += ` <strong>⚠️ English Language D7 does not meet the minimum grade (must be C6 or better) for JC/MI.</strong>`;
+  if (elFailsMinJC) note += ` <strong>⚠️ English Language does not meet the minimum grade (must be C6 or better) for JC/MI.</strong>`;
   if(preCap > 3) note += ` <strong>Note:</strong> Bonus was capped at 3 (from 2028 JAE) — ${preCap-3} bonus pt(s) were not counted.`;
   if(hasH && hmtl < el) note += ` HMTL used as L1 instead of EL, saving <strong>${el-hmtl} pt(s)</strong>.`;
   if(!hasH) note += ` Tip: if your child takes HMTL and it scores better than EL, it can lower L1 — toggle HMTL above to see the impact.`;
@@ -1570,7 +1740,7 @@ function calcPoly(){
   const b2  = parseInt(document.getElementById('p-b2').value);
   const cca = parseInt(document.getElementById('p-cca').value);
 
-  const b2labels={1:'G3 A1/A2/B3 → G2:1',2:'G3 B4/C5/C6 → G2:2',3:'G3 D7 → G2:3',4:'G3 E8 → G2:4',5:'G3 Fail → G2:5'};
+  const b2labels={1:'G3 A1/A2/B3 → G2 Grade 1',2:'G3 B4/C5/C6 → G2 Grade 2',3:'G3 D7 → G2 Grade 3',4:'G3 E8 → G2 Grade 4',5:'G3 F9 → G2 Grade 5'};
   const raw = el+r1+r2+b1+b2;
   const net = raw-cca;
 
@@ -1584,19 +1754,76 @@ function calcPoly(){
   document.getElementById('p-bkd').innerHTML = rows.map(r=>`<div class="brow"><span>${r[0]}</span><span>${r[1]}</span></div>`).join('');
   document.getElementById('p-net-score').textContent = net;
 
-  // Poly eligibility thresholds are assessed on the NET ELR2B2 score (after CCA bonus deductions)
   let ep='';
   ep += net<=22 ? `<span class="ep yes">✅ Poly Year 1 — net ELR2B2 ${net} ≤ 22 (most courses)</span>` : `<span class="ep maybe">⚡ Poly Year 1 — net ELR2B2 ${net} exceeds 22; check specific course MERs</span>`;
-  ep += net<=12 ? `<span class="ep yes">✅ PFP Eligible (net ELR2B2 ${net} ≤ 12)</span>` : '';
-  ep += raw<=19 ? `<span class="ep yes">✅ ITE Year 2 Direct Entry (raw ≤ 19)</span>` : `<span class="ep maybe">⚡ ITE Year 1 entry</span>`;
   document.getElementById('p-elig').innerHTML = ep;
 
   document.getElementById('p-note').innerHTML =
-    `Raw ELR2B2: <strong>${raw}</strong>. B2 mapped from G3 to G2 scale. CCA bonus: <strong>${cca} pts</strong> deducted to give net score of <strong>${net}</strong>. Eligibility thresholds are based on the <strong>net</strong> score (after bonus deductions); CCA bonus points directly help meet the cut-off. Check MOE CourseFinder for course-specific cut-offs.`;
+    `Raw ELR2B2: <strong>${raw}</strong>. B2 mapped from G3 to G2 scale. CCA bonus: <strong>${cca} pts</strong> deducted to give net score of <strong>${net}</strong>. Eligibility thresholds are based on the <strong>net</strong> score. This tab covers <strong>Polytechnic Year 1 direct entry only</strong> — for PFP, use the <strong>PFP — ELMAB3</strong> tab, which uses a different aggregate and has minimum subject grade requirements. Check MOE CourseFinder for course-specific cut-offs.`;
 
   const box=document.getElementById('poly-result');
   box.classList.add('show');
   box.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+
+const GRADE_LBL = {
+  1:'G2 Grade 1 / G3 A1–B3',
+  2:'G2 Grade 2 / G3 B4–C6',
+  3:'G2 Grade 3 / G3 D7',
+  4:'G2 Grade 4 / G3 E8',
+  5:'G2 Grade 5 / G3 F9',
+  6:'G2 Grade 6'
+};
+
+function calcPFP(){
+  const el  = parseInt(document.getElementById('pfp-el').value);
+  const ma  = parseInt(document.getElementById('pfp-ma').value);
+  const rel = parseInt(document.getElementById('pfp-rel').value);
+  const o1  = parseInt(document.getElementById('pfp-o1').value);
+  const o2  = parseInt(document.getElementById('pfp-o2').value);
+
+  const total = el + ma + rel + o1 + o2;
+
+  const rows = [
+    [`E — English (${GRADE_LBL[el]})`, el],
+    [`M — Maths / A.Maths (${GRADE_LBL[ma]})`, ma],
+    [`B1 — Relevant subject (${GRADE_LBL[rel]})`, rel],
+    [`B2 — Other subject 1 (${GRADE_LBL[o1]})`, o1],
+    [`B3 — Other subject 2 (${GRADE_LBL[o2]})`, o2],
+    ['Raw ELMAB3 (CCA excluded)', total]
+  ];
+  document.getElementById('pfp-bkd').innerHTML = rows.map(r=>`<div class="brow"><span>${r[0]}</span><span>${r[1]}</span></div>`).join('');
+  document.getElementById('pfp-score').textContent = total;
+
+  const cAgg  = total <= 12;
+  const cElMa = (el <= 3) && (ma <= 3);
+  const cRel  = rel <= 3;
+  const cOth  = (o1 <= 4) && (o2 <= 4);
+  const allPass = cAgg && cElMa && cRel && cOth;
+
+  const checks = [
+    [cAgg,  `<strong>ELMAB3 raw aggregate ≤ 12</strong> (excluding CCA bonus points) — your child's raw aggregate is <strong>${total}</strong>.`],
+    [cElMa, `<strong>English Language and Mathematics / Additional Mathematics at least Grade 3</strong> — English is Grade ${el}, Mathematics is Grade ${ma}.`],
+    [cRel,  `<strong>One relevant subject at least Grade 3</strong> — the relevant subject entered is Grade ${rel}.`],
+    [cOth,  `<strong>The two other subjects in the aggregate at least Grade 4</strong> — entered as Grade ${o1} and Grade ${o2}.`]
+  ];
+  document.getElementById('pfp-chk').innerHTML = checks.map(c =>
+    `<div class="chk-item ${c[0]?'pass':'fail'}"><span class="chk-ico">${c[0]?'✅':'❌'}</span><span>${c[1]}</span></div>`
+  ).join('');
+
+  document.getElementById('pfp-elig').innerHTML = allPass
+    ? `<span class="ep yes">✅ Meets all four PFP academic conditions</span>`
+    : `<span class="ep no">❌ Does not meet all PFP conditions — see the checklist below</span>`;
+
+  let note = `PFP eligibility is assessed on the <strong>raw</strong> ELMAB3 aggregate (CCA bonus points are not deducted), <strong>and</strong> all three minimum grade conditions must be satisfied at the same time. Meeting the aggregate alone is not enough.`;
+  if(!allPass && cAgg) note += ` Your child's aggregate of ${total} is within the limit, but at least one minimum grade condition is not met.`;
+  if(allPass) note += ` PFP places remain competitive — meeting the minimum criteria does not guarantee an offer, and actual cut-offs vary by polytechnic and cluster.`;
+  note += ` Always verify the current requirements with the individual polytechnics and MOE CourseFinder.`;
+  document.getElementById('pfp-note').innerHTML = note;
+
+  const box = document.getElementById('pfp-result');
+  box.classList.add('show');
+  box.scrollIntoView({behavior:'smooth', block:'nearest'});
 }
 
 function toggleITELevel(){
@@ -1625,16 +1852,15 @@ function calcITE(){
   const b3 = parseInt(document.getElementById('ite-b3').value);
 
   const total = elRaw + maRaw + a + b + b3;
-  const thr = parseInt(document.getElementById('ite-target').value);
 
-  const g3map = {1:'G3 A1/A2/B3',2:'G3 B4/C5/C6',3:'G3 D7',4:'G3 E8',5:'G3 Fail'};
+  const g3map = {1:'G3 A1–B3 → G2 Grade 1',2:'G3 B4–C6 → G2 Grade 2',3:'G3 D7 → G2 Grade 3',4:'G3 E8 → G2 Grade 4',5:'G3 F9 → G2 Grade 5'};
 
   const rows = [
-    [`E — English (${isG3 ? g3map[elRaw]+'→G2:'+elRaw : 'G2:'+elRaw})`, elRaw],
-    [`M — Maths (${isG3 ? g3map[maRaw]+'→G2:'+maRaw : 'G2:'+maRaw})`, maRaw],
-    [`A — Best subject`, a],
-    [`B — 2nd best`, b],
-    [`B3 — 3rd best`, b3],
+    [`E — English (${isG3 ? g3map[elRaw] : 'G2 Grade '+elRaw})`, elRaw],
+    [`M — Maths (${isG3 ? g3map[maRaw] : 'G2 Grade '+maRaw})`, maRaw],
+    [`A — Best subject (${GRADE_LBL[a]})`, a],
+    [`B — 2nd best (${GRADE_LBL[b]})`, b],
+    [`B3 — 3rd best (${GRADE_LBL[b3]})`, b3],
     [`ELMAB3 Total`, total],
   ];
 
@@ -1646,8 +1872,6 @@ function calcITE(){
     ? `<span class="ep yes">✅ ITE Year 2 Direct Entry (ELMAB3 ≤ 19)</span>`
     : `<span class="ep no">❌ Year 2 Direct Entry — need ELMAB3 ≤ 19</span>`;
   ep += `<span class="ep yes">✅ ITE Year 1 Entry (all students qualify)</span>`;
-  if(total <= 12) ep += `<span class="ep yes">✅ PFP Eligible (ELMAB3 ≤ 12)</span>`;
-  if(total <= 15) ep += `<span class="ep arts">🎨 NAFA Foundation Prog. (ELMAB3 ≤ 15)</span>`;
 
   document.getElementById('ite-elig').innerHTML = ep;
 
@@ -1655,8 +1879,7 @@ function calcITE(){
   if(isG3) note += ` G3 grades were auto-mapped to their G2 equivalents.`;
   if(total <= 19) note += ` Your child qualifies for <strong>ITE Year 2 direct entry</strong>, saving one year of study.`;
   else note += ` Your child enters ITE <strong>Year 1</strong>. If they score GPA ≥ 3.7 in Year 1 Sem 1, a bridging pathway to Year 2 is available.`;
-  if(total <= 15) note += ` Also check out the <strong>NAFA Foundation Programme</strong> if arts is a passion!`;
-  note += ` Use MOE CourseFinder to verify specific course MERs.`;
+  note += ` This tab covers ITE only — PFP and the NAFA Foundation Programme also use an ELMAB3 aggregate but apply different thresholds and additional conditions, so check their own tabs. Use MOE CourseFinder to verify specific course MERs.`;
   document.getElementById('ite-note').innerHTML = note;
 
   const box = document.getElementById('ite-result');
@@ -1676,13 +1899,8 @@ function calcArts(){
   const bb    = parseInt(document.getElementById('arts-bb').value);
   const bc    = parseInt(document.getElementById('arts-bc').value);
 
-  // LASALLE/NAFA Year 1: 3 G3 + 1 G2, excluding EL
-  // LASALLE Direct Entry is assessed on the RAW aggregate (before CCA deduction).
-  // NAFA Direct Entry is assessed on the NET aggregate (after CCA bonus deducted).
   const rawAgg = g3a + g3b + g3c + g2;
   const netAgg = rawAgg - cca;
-
-  // NAFA Foundation Programme: ELMAB3 (G2 level, excl. CCA)
   const nafaElmab3 = el + ma + ba + bb + bc;
 
   const rows = [
@@ -1705,10 +1923,6 @@ function calcArts(){
   document.getElementById('arts-bkd').innerHTML = rows.map(r=>`<div class="brow"><span>${r[0]}</span><span>${r[1]}</span></div>`).join('');
   document.getElementById('arts-agg-score').textContent = rawAgg;
 
-  // LASALLE/NAFA Year 1 requires BOTH conditions:
-  // (1) EL at G3 must meet minimum — C6 or better; D7 (value 7) or worse fails.
-  // (2) 4-subject aggregate (3G3 + 1G2, excl. EL) must be ≤ 21 — LASALLE checks the RAW
-  //     aggregate (before CCA), NAFA checks the NET aggregate (after CCA deducted).
   const elPassesForArts = el <= 6;
   let ep = '';
   if (!elPassesForArts) {
