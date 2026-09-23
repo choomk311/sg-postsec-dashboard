@@ -1336,6 +1336,17 @@ tr:hover td{background:#fafcfe}
             <option value="3" selected>G3 D7 → G2 Grade 3</option><option value="4">G3 E8 → G2 Grade 4</option><option value="5">G3 F9 (Fail) → G2 Grade 5</option>
           </select>
         </div>
+        <div id="ite-el-mix-wrap" style="display:none">
+          <label class="calc-label">English Language — G2 Grade / G3 Equivalent</label>
+          <select class="calc-select" id="ite-el-mix">
+            <option value="1">G2 Grade 1 / G3 A1–B3</option>
+            <option value="2">G2 Grade 2 / G3 B4–C6</option>
+            <option value="3" selected>G2 Grade 3 / G3 D7</option>
+            <option value="4">G2 Grade 4 / G3 E8</option>
+            <option value="5">G2 Grade 5 / G3 F9 (Fail)</option>
+            <option value="6">G2 Grade 6</option>
+          </select>
+        </div>
       </div>
 
       <div class="sec-lbl">Step 3 — Mathematics (M)</div>
@@ -1354,6 +1365,17 @@ tr:hover td{background:#fafcfe}
             <option value="1">G3 A1 → G2 Grade 1</option><option value="1">G3 A2 → G2 Grade 1</option><option value="1">G3 B3 → G2 Grade 1</option>
             <option value="2">G3 B4 → G2 Grade 2</option><option value="2">G3 C5 → G2 Grade 2</option><option value="2">G3 C6 → G2 Grade 2</option>
             <option value="3" selected>G3 D7 → G2 Grade 3</option><option value="4">G3 E8 → G2 Grade 4</option><option value="5">G3 F9 (Fail) → G2 Grade 5</option>
+          </select>
+        </div>
+        <div id="ite-ma-mix-wrap" style="display:none">
+          <label class="calc-label">Mathematics — G2 Grade / G3 Equivalent</label>
+          <select class="calc-select" id="ite-ma-mix">
+            <option value="1">G2 Grade 1 / G3 A1–B3</option>
+            <option value="2">G2 Grade 2 / G3 B4–C6</option>
+            <option value="3" selected>G2 Grade 3 / G3 D7</option>
+            <option value="4">G2 Grade 4 / G3 E8</option>
+            <option value="5">G2 Grade 5 / G3 F9 (Fail)</option>
+            <option value="6">G2 Grade 6</option>
           </select>
         </div>
       </div>
@@ -1830,22 +1852,29 @@ function toggleITELevel(){
   const lvl = document.getElementById('ite-level').value;
   const isG3 = lvl === 'g3';
   const isMix = lvl === 'mix';
-  document.getElementById('ite-el-g2-wrap').style.display = (isG3) ? 'none' : 'block';
+  document.getElementById('ite-el-g2-wrap').style.display = (isG3 || isMix) ? 'none' : 'block';
   document.getElementById('ite-el-g3-wrap').style.display = (isG3) ? 'block' : 'none';
-  document.getElementById('ite-ma-g2-wrap').style.display = (isG3) ? 'none' : 'block';
+  document.getElementById('ite-el-mix-wrap').style.display = (isMix) ? 'block' : 'none';
+  document.getElementById('ite-ma-g2-wrap').style.display = (isG3 || isMix) ? 'none' : 'block';
   document.getElementById('ite-ma-g3-wrap').style.display = (isG3) ? 'block' : 'none';
+  document.getElementById('ite-ma-mix-wrap').style.display = (isMix) ? 'block' : 'none';
   document.getElementById('ite-map-note').style.display = (isG3 || isMix) ? 'block' : 'none';
 }
 
 function calcITE(){
   const lvl = document.getElementById('ite-level').value;
   const isG3 = lvl === 'g3';
+  const isMix = lvl === 'mix';
 
   const elRaw = isG3
     ? parseInt(document.getElementById('ite-el-g3').value)
+    : isMix
+    ? parseInt(document.getElementById('ite-el-mix').value)
     : parseInt(document.getElementById('ite-el-g2').value);
   const maRaw = isG3
     ? parseInt(document.getElementById('ite-ma-g3').value)
+    : isMix
+    ? parseInt(document.getElementById('ite-ma-mix').value)
     : parseInt(document.getElementById('ite-ma-g2').value);
   const a  = parseInt(document.getElementById('ite-a').value);
   const b  = parseInt(document.getElementById('ite-b').value);
