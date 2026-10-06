@@ -1457,184 +1457,99 @@ tr:hover td{background:#fafcfe}
       <div class="callout amber" style="margin-bottom:20px">
         <div class="c-ico">ℹ️</div>
         <div class="c-body">
-          <div class="c-title">ITE ELMAB3 Aggregate (from AY2028)</div>
-          <p>ELMAB3 = English Language + Any 1 Maths + Any 3 Best subjects. Computed at <strong>G2 level</strong>. Students with G3 subjects have them mapped to G2 using the grade mapping table. An ELMAB3 ≤ 19 qualifies for <strong>ITE Year 2 direct entry</strong>. Students taking mostly <strong>G1</strong> subjects use the separate G1 ITE Aggregate calculation below instead.</p>
+          <div class="c-title">Two ITE entry routes — two calculators</div>
+          <p><strong>Year 1 Entry</strong> is computed at <strong>G1 level (ITE aggregate score)</strong> from four subjects, plus a check of the course's minimum entry requirements (MERs). <strong>Year 2 Entry</strong> (the faster route) is computed at <strong>G2 level</strong> using ELMAB3 ≤ 19. G3 and G2 grades are converted automatically in both.</p>
         </div>
       </div>
 
-      <div class="sec-lbl">Step 1 — Subject Level</div>
-      <div class="fg2" style="margin-bottom:16px">
-        <div>
-          <label class="calc-label">Subjects are mostly at…</label>
-          <select class="calc-select" id="ite-level" onchange="toggleITELevel()">
-            <option value="g2">G2 (enter grades directly)</option>
-            <option value="g3">G3 (grades auto-mapped to G2)</option>
-            <option value="mix">Mix of G2 and G3</option>
-            <option value="g1">G1 (uses the G1 ITE Aggregate, not ELMAB3)</option>
-          </select>
-        </div>
-        <div id="ite-target-wrap">
-          <label class="calc-label">Target</label>
-          <select class="calc-select" id="ite-target" onchange="toggleITETarget()">
-            <option value="19">Year 2 Direct Entry (ELMAB3 ≤ 19)</option>
-            <option value="99">Year 1 Entry — via ELB3 / MSB3 / B4 / ELMAB2 (Nursing)</option>
-          </select>
-        </div>
+      <div class="subtabs">
+        <button class="subtab on" onclick="switchIteSub(event,'ite-y1')">🌱 ITE Year 1 Entry</button>
+        <button class="subtab" onclick="switchIteSub(event,'ite-y2')">🚀 ITE Year 2 Entry (faster route)</button>
       </div>
 
-      <div id="ite-map-note" style="display:none;margin-bottom:14px;padding:11px 15px;background:var(--indigo-pale);border-radius:10px;border:1px solid #c7d2fe;font-size:12.5px;color:#3730a3;line-height:1.6">
-        <strong>G3 → G2 Mapping:</strong> G3 A1/A2/B3 → G2 Grade 1 · G3 B4/C5/C6 → G2 Grade 2 · G3 D7 → G2 Grade 3 · G3 E8 → G2 Grade 4 · G3 F9 (Fail) → G2 Grade 5. Select your G3 grade and the G2 equivalent is shown automatically.
-      </div>
-
-      <div id="ite-y1-note" style="display:none;margin-bottom:14px;padding:11px 15px;background:var(--rose-pale);border-radius:10px;border:1px solid #fda4af;font-size:12.5px;color:#9f1239;line-height:1.6">
-        <strong>Year 1 entry note:</strong> ITE Year 1 admission is not based on a single "any ELMAB3 score" rule. Depending on the course, entry is via <strong>ELB3</strong> (English + Best 3), <strong>MSB3</strong> (Maths <em>or</em> Science + Best 3), <strong>B4</strong> (Best 4 subjects), or <strong>ELMAB2</strong> (English, Maths + Best 2 — used for Nursing). This calculator computes ELMAB3, which is not the exact aggregate used for Year 1 entry — please check the specific course's required aggregate on MOE CourseFinder.
-      </div>
-
-      <!-- Standard ELMAB3 fields (G2/G3/mix) -->
-      <div id="ite-elmab3-fields">
-        <div class="sec-lbl">Step 2 — English Language (E)</div>
+      <!-- YEAR 1 -->
+      <div class="subpanel on" id="ite-y1">
+        <div class="sec-lbl">Step 1 — Aggregate type of the course</div>
+        <div style="font-size:12.5px;color:var(--muted);margin-bottom:12px">Check the course's aggregate type on MOE CourseFinder, then select it here.</div>
         <div class="fg2" style="margin-bottom:16px">
-          <div id="ite-el-g2-wrap">
-            <label class="calc-label">English Language — G2 Grade</label>
-            <select class="calc-select" id="ite-el-g2">
-              <option value="1">G2 Grade 1</option><option value="2">G2 Grade 2</option>
-              <option value="3" selected>G2 Grade 3</option><option value="4">G2 Grade 4</option>
-              <option value="5">G2 Grade 5</option><option value="6">G2 Grade 6</option>
-            </select>
-          </div>
-          <div id="ite-el-g3-wrap" style="display:none">
-            <label class="calc-label">English Language — G3 Grade (auto-mapped)</label>
-            <select class="calc-select" id="ite-el-g3">
-              <option value="1">G3 A1 → G2 Grade 1</option><option value="1">G3 A2 → G2 Grade 1</option><option value="1">G3 B3 → G2 Grade 1</option>
-              <option value="2">G3 B4 → G2 Grade 2</option><option value="2">G3 C5 → G2 Grade 2</option><option value="2">G3 C6 → G2 Grade 2</option>
-              <option value="3" selected>G3 D7 → G2 Grade 3</option><option value="4">G3 E8 → G2 Grade 4</option><option value="5">G3 F9 (Fail) → G2 Grade 5</option>
-            </select>
-          </div>
-          <div id="ite-el-mix-wrap" style="display:none">
-            <label class="calc-label">English Language — G2 Grade / G3 Equivalent</label>
-            <select class="calc-select" id="ite-el-mix">
-              <option value="1">G2 Grade 1 / G3 A1–B3</option>
-              <option value="2">G2 Grade 2 / G3 B4–C6</option>
-              <option value="3" selected>G2 Grade 3 / G3 D7</option>
-              <option value="4">G2 Grade 4 / G3 E8</option>
-              <option value="5">G2 Grade 5 / G3 F9 (Fail)</option>
-              <option value="6">G2 Grade 6</option>
+          <div>
+            <label class="calc-label">Aggregate type</label>
+            <select class="calc-select" id="ite-y1-type" onchange="buildIteY1()">
+              <option value="elmab2">R2B2 (ELMAB2) — English &amp; Maths required</option>
+              <option value="mab3">R1B3-A (MAB3) — Maths required</option>
+              <option value="masb3">R1B3-B (MA/SB3) — Maths or Science required</option>
+              <option value="elb3">R1B3-C (ELB3) — English required</option>
+              <option value="b4">B4 — no specific subject required</option>
             </select>
           </div>
         </div>
 
-        <div class="sec-lbl">Step 3 — Mathematics (M)</div>
+        <div class="sec-lbl">Step 2 — Required subject(s)</div>
+        <div id="ite-y1-req"></div>
+
+        <div class="sec-lbl">Step 3 — Other subjects</div>
+        <div id="ite-y1-hint" style="font-size:12.5px;color:var(--muted);margin-bottom:12px"></div>
+        <div id="ite-y1-others"></div>
+
+        <button class="calc-run" onclick="calcITEY1()">Calculate ITE Aggregate →</button>
+
+        <div class="result-box" id="ite-y1-result">
+          <div class="result-header">
+            <div>
+              <div class="rscore-n" id="ite-y1-score"></div>
+              <div class="rscore-l">ITE Aggregate (4 subjects)</div>
+            </div>
+            <div class="rbk">
+              <div class="rbk-title">Score Breakdown</div>
+              <div id="ite-y1-bkd"></div>
+            </div>
+          </div>
+          <div class="result-body">
+            <div class="e-title">Result</div>
+            <div class="e-pills" id="ite-y1-elig"></div>
+            <div class="e-title" style="margin-top:18px">MER Checklist</div>
+            <div class="chk-list" id="ite-y1-chk"></div>
+            <div class="rnote" id="ite-y1-note"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- YEAR 2 -->
+      <div class="subpanel" id="ite-y2">
+        <div class="callout sky" style="margin-bottom:20px">
+          <div class="c-ico">🚀</div>
+          <div class="c-body">
+            <div class="c-title">Year 2 direct entry — ELMAB3 ≤ 19 at G2 level</div>
+            <p>ELMAB3 = English Language + Mathematics + 3 Best subjects. Each dropdown shows the G2 grade with its G3 equivalent, so G2, G3 or mixed students can key in directly.</p>
+          </div>
+        </div>
         <div class="fg2" style="margin-bottom:16px">
-          <div id="ite-ma-g2-wrap">
-            <label class="calc-label">Mathematics — G2 Grade</label>
-            <select class="calc-select" id="ite-ma-g2">
-              <option value="1">G2 Grade 1</option><option value="2">G2 Grade 2</option>
-              <option value="3" selected>G2 Grade 3</option><option value="4">G2 Grade 4</option>
-              <option value="5">G2 Grade 5</option><option value="6">G2 Grade 6</option>
-            </select>
-          </div>
-          <div id="ite-ma-g3-wrap" style="display:none">
-            <label class="calc-label">Mathematics — G3 Grade (auto-mapped)</label>
-            <select class="calc-select" id="ite-ma-g3">
-              <option value="1">G3 A1 → G2 Grade 1</option><option value="1">G3 A2 → G2 Grade 1</option><option value="1">G3 B3 → G2 Grade 1</option>
-              <option value="2">G3 B4 → G2 Grade 2</option><option value="2">G3 C5 → G2 Grade 2</option><option value="2">G3 C6 → G2 Grade 2</option>
-              <option value="3" selected>G3 D7 → G2 Grade 3</option><option value="4">G3 E8 → G2 Grade 4</option><option value="5">G3 F9 (Fail) → G2 Grade 5</option>
-            </select>
-          </div>
-          <div id="ite-ma-mix-wrap" style="display:none">
-            <label class="calc-label">Mathematics — G2 Grade / G3 Equivalent</label>
-            <select class="calc-select" id="ite-ma-mix">
-              <option value="1">G2 Grade 1 / G3 A1–B3</option>
-              <option value="2">G2 Grade 2 / G3 B4–C6</option>
-              <option value="3" selected>G2 Grade 3 / G3 D7</option>
-              <option value="4">G2 Grade 4 / G3 E8</option>
-              <option value="5">G2 Grade 5 / G3 F9 (Fail)</option>
-              <option value="6">G2 Grade 6</option>
-            </select>
-          </div>
+          <div><label class="calc-label">English Language (E)</label><select class="calc-select" id="ite-y2-el"></select></div>
+          <div><label class="calc-label">Mathematics (M)</label><select class="calc-select" id="ite-y2-ma"></select></div>
         </div>
-
-        <div class="sec-lbl">Step 4 — 3 Best Subjects (A, B, B3)</div>
-        <div style="font-size:12.5px;color:var(--muted);margin-bottom:12px">Select your child's 3 best remaining subjects. Each option shows the G2 grade with its G3 equivalent, so mixed G2/G3 combinations can be keyed in directly.</div>
         <div class="fg3" style="margin-bottom:16px">
-          <div>
-            <label class="calc-label">Best Subject A</label>
-            <select class="calc-select" id="ite-a">
-              <option value="1">G2 Grade 1 / G3 A1–B3</option>
-              <option value="2" selected>G2 Grade 2 / G3 B4–C6</option>
-              <option value="3">G2 Grade 3 / G3 D7</option>
-              <option value="4">G2 Grade 4 / G3 E8</option>
-              <option value="5">G2 Grade 5 / G3 F9 (Fail)</option>
-              <option value="6">G2 Grade 6</option>
-            </select>
-          </div>
-          <div>
-            <label class="calc-label">2nd Best Subject B</label>
-            <select class="calc-select" id="ite-b">
-              <option value="1">G2 Grade 1 / G3 A1–B3</option>
-              <option value="2">G2 Grade 2 / G3 B4–C6</option>
-              <option value="3" selected>G2 Grade 3 / G3 D7</option>
-              <option value="4">G2 Grade 4 / G3 E8</option>
-              <option value="5">G2 Grade 5 / G3 F9 (Fail)</option>
-              <option value="6">G2 Grade 6</option>
-            </select>
-          </div>
-          <div>
-            <label class="calc-label">3rd Best Subject B3</label>
-            <select class="calc-select" id="ite-b3">
-              <option value="1">G2 Grade 1 / G3 A1–B3</option>
-              <option value="2">G2 Grade 2 / G3 B4–C6</option>
-              <option value="3">G2 Grade 3 / G3 D7</option>
-              <option value="4" selected>G2 Grade 4 / G3 E8</option>
-              <option value="5">G2 Grade 5 / G3 F9 (Fail)</option>
-              <option value="6">G2 Grade 6</option>
-            </select>
-          </div>
+          <div><label class="calc-label">Best Subject A</label><select class="calc-select" id="ite-y2-a"></select></div>
+          <div><label class="calc-label">2nd Best Subject B</label><select class="calc-select" id="ite-y2-b"></select></div>
+          <div><label class="calc-label">3rd Best Subject B3</label><select class="calc-select" id="ite-y2-b3"></select></div>
         </div>
+        <button class="calc-run" onclick="calcITEY2()">Check Year 2 Entry →</button>
 
-        <button class="calc-run" onclick="calcITE()">Calculate ELMAB3 Score →</button>
-      </div>
-
-      <!-- G1 aggregate fields -->
-      <div id="ite-g1-fields" style="display:none">
-        <div class="sec-lbl">Step 2 — English Language</div>
-        <div class="fg2" style="margin-bottom:16px">
-          <div>
-            <label class="calc-label">English Language — Level</label>
-            <select class="calc-select" id="ite-g1-el-level" onchange="renderG1ELOptions()">
-              <option value="g1">G1</option>
-              <option value="g2" selected>G2</option>
-              <option value="g3">G3</option>
-            </select>
+        <div class="result-box" id="ite-y2-result">
+          <div class="result-header">
+            <div>
+              <div class="rscore-n" id="ite-y2-score"></div>
+              <div class="rscore-l">ELMAB3 (G2)</div>
+            </div>
+            <div class="rbk">
+              <div class="rbk-title">Score Breakdown</div>
+              <div id="ite-y2-bkd"></div>
+            </div>
           </div>
-          <div>
-            <label class="calc-label">English Language — Grade</label>
-            <select class="calc-select" id="ite-g1-el-grade"></select>
+          <div class="result-body">
+            <div class="e-title">Eligibility</div>
+            <div class="e-pills" id="ite-y2-elig"></div>
+            <div class="rnote" id="ite-y2-note"></div>
           </div>
-        </div>
-
-        <div class="sec-lbl">Step 3 — 3 Other Best Subjects</div>
-        <div style="font-size:12.5px;color:var(--muted);margin-bottom:12px">For G1 students, the ITE aggregate = English Language's ITE Aggregate Score + the best 3 of the remaining subjects' ITE Aggregate Scores (each subject can be at G1, G2 or G3 — pick the level, then the grade).</div>
-        <div id="ite-g1-others"></div>
-
-        <button class="calc-run" onclick="calcITEG1()">Calculate G1 ITE Aggregate →</button>
-      </div>
-
-      <div class="result-box" id="ite-result">
-        <div class="result-header">
-          <div>
-            <div class="rscore-n" id="ite-net-score"></div>
-            <div class="rscore-l" id="ite-score-label">ELMAB3 Score</div>
-          </div>
-          <div class="rbk">
-            <div class="rbk-title">Score Breakdown</div>
-            <div id="ite-bkd"></div>
-          </div>
-        </div>
-        <div class="result-body">
-          <div class="e-title">Eligibility</div>
-          <div class="e-pills" id="ite-elig"></div>
-          <div class="rnote" id="ite-note"></div>
         </div>
       </div>
     </div>
