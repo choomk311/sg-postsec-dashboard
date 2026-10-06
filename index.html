@@ -2116,119 +2116,11 @@ function calcPFP(){
   box.scrollIntoView({behavior:'smooth', block:'nearest'});
 }
 
-// ITE Aggregate Score mapping (used for the G1 aggregate): level+grade -> ITE Aggregate Score 1-5
-function g3ToIteAgg(v){
-  // v is G3 grade 1-9
-  if(v<=3) return 1;      // A1,A2,B3
-  if(v<=6) return 1;      // B4,C5,C6
-  if(v===7) return 1;     // D7
-  if(v===8) return 2;     // E8
-  return 3;               // F9
-}
-function g2ToIteAgg(v){
-  // v is G2 grade 1-6
-  if(v<=3) return 1;      // Grade 1-3 -> ITE agg 1 (per table: G2 1,2,3 all map to G1 'A' -> agg 1)
-  if(v===4) return 2;
-  if(v===5) return 3;
-  return 4;                // Grade 6
-}
-function g1ToIteAgg(v){
-  // v: 1=A,2=B,3=C,4=D,5=E
-  return v; // A->1,B->2,C->3,D->4,E->5 per table
-}
+// ===== ITE CALCULATORS =====
+function g3ToIteAgg(v){ return v<=7 ? 1 : (v===8 ? 2 : 3); }
+function g2ToIteAgg(v){ return v<=3 ? 1 : (v===4 ? 2 : (v===5 ? 3 : 4)); }
+function g1ToIteAgg(v){ return v; }
 
-function toggleITELevel(){
-  const lvl = document.getElementById('ite-level').value;
-  const isG3 = lvl === 'g3';
-  const isMix = lvl === 'mix';
-  const isG1 = lvl === 'g1';
-
-  document.getElementById('ite-elmab3-fields').style.display = isG1 ? 'none' : 'block';
-  document.getElementById('ite-g1-fields').style.display = isG1 ? 'block' : 'none';
-  document.getElementById('ite-target-wrap').style.display = isG1 ? 'none' : 'block';
-
-  document.getElementById('ite-el-g2-wrap').style.display = (isG3 || isMix || isG1) ? 'none' : 'block';
-  document.getElementById('ite-el-g3-wrap').style.display = (isG3) ? 'block' : 'none';
-  document.getElementById('ite-el-mix-wrap').style.display = (isMix) ? 'block' : 'none';
-  document.getElementById('ite-ma-g2-wrap').style.display = (isG3 || isMix || isG1) ? 'none' : 'block';
-  document.getElementById('ite-ma-g3-wrap').style.display = (isG3) ? 'block' : 'none';
-  document.getElementById('ite-ma-mix-wrap').style.display = (isMix) ? 'block' : 'none';
-  document.getElementById('ite-map-note').style.display = (isG3 || isMix) ? 'block' : 'none';
-
-  if(isG1){
-    buildG1Fields();
-  } else {
-    toggleITETarget();
-  }
-}
-
-function toggleITETarget(){
-  const t = document.getElementById('ite-target').value;
-  document.getElementById('ite-y1-note').style.display = (t==='99') ? 'block' : 'none';
-}
-
-function calcITE(){
-  const lvl = document.getElementById('ite-level').value;
-  const isG3 = lvl === 'g3';
-  const isMix = lvl === 'mix';
-
-  const elRaw = isG3
-    ? parseInt(document.getElementById('ite-el-g3').value)
-    : isMix
-    ? parseInt(document.getElementById('ite-el-mix').value)
-    : parseInt(document.getElementById('ite-el-g2').value);
-  const maRaw = isG3
-    ? parseInt(document.getElementById('ite-ma-g3').value)
-    : isMix
-    ? parseInt(document.getElementById('ite-ma-mix').value)
-    : parseInt(document.getElementById('ite-ma-g2').value);
-  const a  = parseInt(document.getElementById('ite-a').value);
-  const b  = parseInt(document.getElementById('ite-b').value);
-  const b3 = parseInt(document.getElementById('ite-b3').value);
-  const target = parseInt(document.getElementById('ite-target').value);
-
-  const total = elRaw + maRaw + a + b + b3;
-
-  const g3map = {1:'G3 A1–B3 → G2 Grade 1',2:'G3 B4–C6 → G2 Grade 2',3:'G3 D7 → G2 Grade 3',4:'G3 E8 → G2 Grade 4',5:'G3 F9 → G2 Grade 5'};
-
-  const rows = [
-    [`E — English (${isG3 ? g3map[elRaw] : 'G2 Grade '+elRaw})`, elRaw],
-    [`M — Maths (${isG3 ? g3map[maRaw] : 'G2 Grade '+maRaw})`, maRaw],
-    [`A — Best subject (${GRADE_LBL[a]})`, a],
-    [`B — 2nd best (${GRADE_LBL[b]})`, b],
-    [`B3 — 3rd best (${GRADE_LBL[b3]})`, b3],
-    [`ELMAB3 Total`, total],
-  ];
-
-  document.getElementById('ite-score-label').textContent = 'ELMAB3 Score';
-  document.getElementById('ite-bkd').innerHTML = rows.map(r=>`<div class="brow"><span>${r[0]}</span><span>${r[1]}</span></div>`).join('');
-  document.getElementById('ite-net-score').textContent = total;
-
-  let ep = '';
-  let note = '';
-  if(target === 99){
-    ep += `<span class="ep maybe">⚡ Year 1 Entry — computed via a different aggregate (see note)</span>`;
-    note = `ELMAB3 = ${elRaw} + ${maRaw} + ${a} + ${b} + ${b3} = <strong>${total}</strong> (shown for reference). ITE Year 1 entry is <strong>not</strong> based on a single "any ELMAB3 score" rule — it uses course-specific aggregates such as <strong>ELB3</strong>, <strong>MSB3</strong>, <strong>B4</strong>, or <strong>ELMAB2</strong> (Nursing). Please check the exact aggregate required for your target course on MOE CourseFinder rather than relying on this ELMAB3 figure for Year 1 entry.`;
-  } else {
-    ep += total <= 19
-      ? `<span class="ep yes">✅ ITE Year 2 Direct Entry (ELMAB3 ≤ 19)</span>`
-      : `<span class="ep no">❌ Year 2 Direct Entry — need ELMAB3 ≤ 19</span>`;
-    note = `ELMAB3 = ${elRaw} + ${maRaw} + ${a} + ${b} + ${b3} = <strong>${total}</strong>. All grades computed at G2.`;
-    if(isG3) note += ` G3 grades were auto-mapped to their G2 equivalents.`;
-    if(total <= 19) note += ` Your child qualifies for <strong>ITE Year 2 direct entry</strong>, saving one year of study.`;
-    else note += ` Your child does not meet the Year 2 direct entry bar and would enter ITE <strong>Year 1</strong>, with a possible bridging pathway to Year 2 if strong results are achieved in Year 1 Semester 1.`;
-  }
-  note += ` This tab covers ITE only — PFP and the NAFA Foundation Programme also use an ELMAB3 aggregate but apply different thresholds and additional conditions, so check their own tabs. Students taking mostly G1 subjects should use the G1 ITE Aggregate option instead. Use MOE CourseFinder to verify specific course MERs.`;
-
-  document.getElementById('ite-elig').innerHTML = ep;
-  document.getElementById('ite-note').innerHTML = note;
-
-  const box = document.getElementById('ite-result');
-  box.classList.add('show');
-  box.scrollIntoView({behavior:'smooth', block:'nearest'});
-}
-
-// ----- G1 ITE Aggregate -----
 function g1LevelOptions(level){
   if(level==='g1') return [{v:1,l:'A'},{v:2,l:'B'},{v:3,l:'C'},{v:4,l:'D'},{v:5,l:'E'}];
   if(level==='g2') return [{v:1,l:'Grade 1'},{v:2,l:'Grade 2'},{v:3,l:'Grade 3'},{v:4,l:'Grade 4'},{v:5,l:'Grade 5'},{v:6,l:'Grade 6'}];
@@ -2241,75 +2133,160 @@ function scoreFor(level,grade){
 }
 function labelFor(level,grade){
   const opt = g1LevelOptions(level).find(o=>o.v===grade);
-  const lvlLbl = level==='g1'?'G1':level==='g2'?'G2':'G3';
-  return `${lvlLbl} ${opt?opt.l:''}`;
+  return (level==='g1'?'G1':level==='g2'?'G2':'G3') + ' ' + (opt?opt.l:'');
 }
-function renderG1ELOptions(){
-  const level = document.getElementById('ite-g1-el-level').value;
-  const sel = document.getElementById('ite-g1-el-grade');
-  sel.innerHTML = g1LevelOptions(level).map(o=>`<option value="${o.v}">${o.l} (ITE agg ${scoreFor(level,o.v)})</option>`).join('');
+// G1 E, G2 Grade 6 and G3 Grade 9 count for the aggregate but NOT for subject MERs
+function iteMerPass(level,grade){
+  if(level==='g1') return grade<=4;
+  if(level==='g2') return grade<=5;
+  return grade<=8;
 }
-function buildG1Fields(){
-  renderG1ELOptions();
-  const wrap = document.getElementById('ite-g1-others');
+
+function switchIteSub(e,id){
+  document.querySelectorAll('#ite-calc .subpanel').forEach(p=>p.classList.remove('on'));
+  document.querySelectorAll('#ite-calc .subtab').forEach(b=>b.classList.remove('on'));
+  document.getElementById(id).classList.add('on');
+  e.currentTarget.classList.add('on');
+}
+
+// ----- Year 1 -----
+const ITE_Y1 = {
+  elmab2:{name:'R2B2 (ELMAB2)', req:['English Language','Mathematics'], best:2, passes:3},
+  mab3:  {name:'R1B3-A (MAB3)', req:['Mathematics'], best:3, passes:3},
+  masb3: {name:'R1B3-B (MA/SB3)', req:['Mathematics or Science (enter your better one)'], best:3, passes:3},
+  elb3:  {name:'R1B3-C (ELB3)', req:['English Language'], best:3, passes:3},
+  b4:    {name:'B4', req:[], best:4, passes:0}
+};
+
+function iteSlot(id,label){
+  return `<div>
+    <label class="calc-label">${label}</label>
+    <select class="calc-select" id="${id}-level" onchange="iteFillGrades('${id}')">
+      <option value="g1">G1</option><option value="g2" selected>G2</option><option value="g3">G3</option>
+    </select>
+    <div style="height:8px"></div>
+    <select class="calc-select" id="${id}-grade"></select>
+  </div>`;
+}
+function iteFillGrades(id,startBlank){
+  const level = document.getElementById(id+'-level').value;
+  const sel = document.getElementById(id+'-grade');
+  const prev = sel.value;
+  const blankable = id.indexOf('ite-y1-o')===0;
+  let html = blankable ? '<option value="0">— Not taken —</option>' : '';
+  html += g1LevelOptions(level).map(o=>`<option value="${o.v}">${o.l} (ITE agg ${scoreFor(level,o.v)})</option>`).join('');
+  sel.innerHTML = html;
+  if(blankable) sel.selectedIndex = (startBlank || prev==='0') ? 0 : 1;
+}
+function buildIteY1(){
+  const cfg = ITE_Y1[document.getElementById('ite-y1-type').value];
+  const reqWrap = document.getElementById('ite-y1-req');
+  if(cfg.req.length){
+    reqWrap.innerHTML = '<div class="fg2" style="margin-bottom:16px">' + cfg.req.map((l,i)=>iteSlot('ite-y1-r'+i,l)).join('') + '</div>';
+    cfg.req.forEach((l,i)=>iteFillGrades('ite-y1-r'+i));
+  } else {
+    reqWrap.innerHTML = '<div style="font-size:12.5px;color:var(--muted);margin-bottom:16px">B4 has no required subject — your best 4 subjects are used.</div>';
+  }
+  document.getElementById('ite-y1-hint').innerHTML =
+    `Enter your other subjects (up to 6). Each can be at G1, G2 or G3. The <strong>best ${cfg.best}</strong> are picked automatically for the aggregate; the others are still used for the pass-count check.`;
   let html = '<div class="fg3" style="margin-bottom:16px">';
-  for(let i=1;i<=4;i++){
-    html += `<div>
-      <label class="calc-label">Subject ${i} — Level</label>
-      <select class="calc-select" id="ite-g1-o${i}-level" onchange="renderG1OtherOptions(${i})">
-        <option value="g1" selected>G1</option>
-        <option value="g2">G2</option>
-        <option value="g3">G3</option>
-      </select>
-      <div style="height:8px"></div>
-      <select class="calc-select" id="ite-g1-o${i}-grade"></select>
-    </div>`;
-  }
+  for(let i=1;i<=6;i++) html += iteSlot('ite-y1-o'+i,'Other subject '+i);
   html += '</div>';
-  wrap.innerHTML = html;
-  for(let i=1;i<=4;i++) renderG1OtherOptions(i);
-}
-function renderG1OtherOptions(i){
-  const level = document.getElementById(`ite-g1-o${i}-level`).value;
-  const sel = document.getElementById(`ite-g1-o${i}-grade`);
-  sel.innerHTML = g1LevelOptions(level).map(o=>`<option value="${o.v}">${o.l} (ITE agg ${scoreFor(level,o.v)})</option>`).join('');
+  document.getElementById('ite-y1-others').innerHTML = html;
+  for(let i=1;i<=6;i++) iteFillGrades('ite-y1-o'+i, i>cfg.best);
 }
 
-function calcITEG1(){
-  const elLevel = document.getElementById('ite-g1-el-level').value;
-  const elGrade = parseInt(document.getElementById('ite-g1-el-grade').value);
-  const elScore = scoreFor(elLevel, elGrade);
-
+function calcITEY1(){
+  const cfg = ITE_Y1[document.getElementById('ite-y1-type').value];
+  const read = (id,name)=>{
+    const lv = document.getElementById(id+'-level').value;
+    const gr = parseInt(document.getElementById(id+'-grade').value);
+    if(!gr) return null;
+    return {name, label:labelFor(lv,gr), score:scoreFor(lv,gr), pass:iteMerPass(lv,gr)};
+  };
+  const reqs = cfg.req.map((l,i)=>read('ite-y1-r'+i, l.split(' (')[0]));
   const others = [];
-  for(let i=1;i<=4;i++){
-    const level = document.getElementById(`ite-g1-o${i}-level`).value;
-    const grade = parseInt(document.getElementById(`ite-g1-o${i}-grade`).value);
-    others.push({label: labelFor(level,grade), score: scoreFor(level,grade)});
+  for(let i=1;i<=6;i++){ const s = read('ite-y1-o'+i,'Other subject '+i); if(s) others.push(s); }
+
+  const box = document.getElementById('ite-y1-result');
+  if(others.length < cfg.best){
+    document.getElementById('ite-y1-score').textContent = '—';
+    document.getElementById('ite-y1-bkd').innerHTML = '';
+    document.getElementById('ite-y1-chk').innerHTML = '';
+    document.getElementById('ite-y1-note').innerHTML = '';
+    document.getElementById('ite-y1-elig').innerHTML = `<span class="ep maybe">⚡ Enter at least ${cfg.best} other subject(s) so the best ${cfg.best} can be picked</span>`;
+    box.classList.add('show');
+    return;
   }
-  others.sort((a,b)=>a.score-b.score);
-  const best3 = others.slice(0,3);
-  const total = elScore + best3.reduce((s,o)=>s+o.score,0);
 
-  const rows = [
-    [`English Language (${labelFor(elLevel,elGrade)})`, elScore]
-  ];
-  best3.forEach((o,idx)=> rows.push([`Best subject ${idx+1} (${o.label})`, o.score]));
-  rows.push(['G1 ITE Aggregate Total', total]);
+  const best = others.slice().sort((a,b)=>a.score-b.score).slice(0,cfg.best);
+  const total = reqs.reduce((s,x)=>s+x.score,0) + best.reduce((s,x)=>s+x.score,0);
 
-  document.getElementById('ite-score-label').textContent = 'G1 ITE Aggregate';
-  document.getElementById('ite-bkd').innerHTML = rows.map(r=>`<div class="brow"><span>${r[0]}</span><span>${r[1]}</span></div>`).join('');
-  document.getElementById('ite-net-score').textContent = total;
+  const rows = reqs.map(r=>[`${r.name} (${r.label})`, r.score]);
+  best.forEach((b,i)=>rows.push([`Best other subject ${i+1} (${b.label})`, b.score]));
+  rows.push(['ITE Aggregate Total', total]);
+  document.getElementById('ite-y1-bkd').innerHTML = rows.map(r=>`<div class="brow"><span>${r[0]}</span><span>${r[1]}</span></div>`).join('');
+  document.getElementById('ite-y1-score').textContent = total;
 
-  document.getElementById('ite-elig').innerHTML = `<span class="ep yes">✅ ITE Year 1 Entry — G1 ITE Aggregate computed (all G1-eligible students may apply)</span>`;
+  const needOthers = Math.max(0, cfg.passes - cfg.req.length);
+  const otherPasses = others.filter(o=>o.pass).length;
+  const chk = reqs.map(r=>[r.pass, `<strong>${r.name}</strong> — ${r.label}: ${r.pass ? 'counts towards the MER.' : 'cannot be used for the MER (G1 E, G2 Grade 6 and G3 Grade 9 only count for the aggregate).'}`]);
+  if(cfg.passes>0) chk.push([otherPasses>=needOthers, `<strong>Other subjects</strong> — need ${needOthers} other pass(es); you have ${otherPasses}.`]);
+  else chk.push([true, `<strong>Completed SEC</strong> — B4 courses have no subject-specific pass requirement.`]);
+  const merOK = chk.every(c=>c[0]);
+  document.getElementById('ite-y1-chk').innerHTML = chk.map(c=>`<div class="chk-item ${c[0]?'pass':'fail'}"><span class="chk-ico">${c[0]?'✅':'❌'}</span><span>${c[1]}</span></div>`).join('');
 
-  let note = `G1 ITE Aggregate = English Language's ITE Aggregate Score + the best 3 of the other 4 subjects' ITE Aggregate Scores, using the combined G3→G2→G1→ITE Aggregate Score mapping table. Your child's total is <strong>${total}</strong>.`;
-  note += ` This aggregate is used for ITE Year 1 admission for students taking mostly G1-level subjects. Actual course cut-offs vary — always check MOE CourseFinder for the specific course your child is applying to.`;
-  document.getElementById('ite-note').innerHTML = note;
+  let ep = merOK
+    ? `<span class="ep yes">✅ Meets the subject MERs for ${cfg.name} courses</span>`
+    : `<span class="ep no">❌ Subject MERs for ${cfg.name} courses not met — see checklist</span>`;
+  ep += `<span class="ep maybe">⚡ ITE aggregate ${total} — compare with your course's cut-off on MOE CourseFinder</span>`;
+  document.getElementById('ite-y1-elig').innerHTML = ep;
 
-  const box = document.getElementById('ite-result');
+  document.getElementById('ite-y1-note').innerHTML =
+    `ITE aggregate = ${cfg.req.length ? 'the required subject(s) + ' : ''}the best ${cfg.best} other subject(s), each converted to its ITE aggregate score (lower is better; the lowest possible is 4). G3 and G2 grades are converted to G1-equivalent scores automatically. Cut-offs and any extra grade requirements differ by course, so always confirm on MOE CourseFinder.`;
+
   box.classList.add('show');
   box.scrollIntoView({behavior:'smooth', block:'nearest'});
 }
+
+// ----- Year 2 -----
+function buildIteY2(){
+  const defs = {'ite-y2-el':3,'ite-y2-ma':3,'ite-y2-a':2,'ite-y2-b':3,'ite-y2-b3':4};
+  Object.keys(defs).forEach(id=>{
+    const sel = document.getElementById(id);
+    sel.innerHTML = [1,2,3,4,5,6].map(v=>`<option value="${v}">${GRADE_LBL[v]}</option>`).join('');
+    sel.value = String(defs[id]);
+  });
+}
+function calcITEY2(){
+  const ids = ['ite-y2-el','ite-y2-ma','ite-y2-a','ite-y2-b','ite-y2-b3'];
+  const names = ['E — English','M — Maths','A — Best subject','B — 2nd best','B3 — 3rd best'];
+  const v = ids.map(id=>parseInt(document.getElementById(id).value));
+  const total = v.reduce((s,x)=>s+x,0);
+
+  const rows = names.map((n,i)=>[`${n} (${GRADE_LBL[v[i]]})`, v[i]]);
+  rows.push(['ELMAB3 Total', total]);
+  document.getElementById('ite-y2-bkd').innerHTML = rows.map(r=>`<div class="brow"><span>${r[0]}</span><span>${r[1]}</span></div>`).join('');
+  document.getElementById('ite-y2-score').textContent = total;
+
+  document.getElementById('ite-y2-elig').innerHTML = total<=19
+    ? `<span class="ep yes">✅ ITE Year 2 Direct Entry (ELMAB3 ${total} ≤ 19)</span>`
+    : `<span class="ep no">❌ Year 2 Direct Entry — need ELMAB3 ≤ 19 (yours: ${total})</span>`;
+
+  let note = `ELMAB3 = ${v.join(' + ')} = <strong>${total}</strong>, computed at G2 level (G3 grades are shown with their G2 equivalents).`;
+  note += total<=19
+    ? ` Your child qualifies for <strong>Year 2 direct entry</strong>, skipping Year 1.`
+    : ` Your child does not meet the Year 2 bar and would apply for <strong>Year 1</strong> instead (use the Year 1 tab), with a possible accelerated pathway if Year 1 Semester 1 results are strong.`;
+  note += ` Always verify on MOE CourseFinder.`;
+  document.getElementById('ite-y2-note').innerHTML = note;
+
+  const box = document.getElementById('ite-y2-result');
+  box.classList.add('show');
+  box.scrollIntoView({behavior:'smooth', block:'nearest'});
+}
+
+buildIteY1();
+buildIteY2();
 
 function calcArtsY1(){
   const el    = parseInt(document.getElementById('arts-el').value);
