@@ -314,7 +314,7 @@ tr:hover td{background:#fafcfe}
     <div class="pw c1" onclick="showSec('jc')">
       <div class="pw-ico">🎓</div>
       <div class="pw-name">Junior College (JC)</div>
-      <div class="pw-desc">2-year A-Level programme. Admission via new L1R4 from 2028 JAE. HMTL can improve your L1 score.</div>
+      <div class="pw-desc">2-year A-Level programme. Admission via new L1R4 from 2028 PSE. HMTL can improve your L1 score.</div>
       <div class="pw-chip">L1R4 ≤ 16</div>
       <div class="badge-new">Updated</div>
     </div>
@@ -402,12 +402,12 @@ tr:hover td{background:#fafcfe}
 <!-- JC / MI -->
 <div class="sec" id="jc">
   <h2 class="pg-title">Junior College &amp; Millennia Institute</h2>
-  <p class="pg-sub">From the 2028 JAE, JC admission shifts from L1R5 to <strong>L1R4</strong> — one fewer subject, freeing time for broader development. HMTL plays a key role for students who take it.</p>
+  <p class="pg-sub">From the 2028 PSE, JC admission shifts from L1R5 to <strong>L1R4</strong> — one fewer subject, freeing time for broader development. HMTL plays a key role for students who take it.</p>
 
   <div class="callout sky">
     <div class="c-ico">🔄</div>
     <div class="c-body">
-      <div class="c-title">Big Change: L1R5 → L1R4 for JC (from 2028 JAE)</div>
+      <div class="c-title">Big Change: L1R5 → L1R4 for JC (from 2028 PSE)</div>
       <p>JC eligibility threshold changes from <span class="pill">L1R5 ≤ 20</span> to <span class="pill">L1R4 ≤ 16</span>. Students with 5 G3 subjects can now access JC — previously only available to 6-G3 students. MI threshold of L1R4 ≤ 20 is unchanged.</p>
     </div>
   </div>
@@ -461,7 +461,7 @@ tr:hover td{background:#fafcfe}
   </div>
 
   <div class="divider"></div>
-  <h3 style="font-family:'Fraunces',serif;font-size:1.2rem;margin-bottom:16px;color:var(--navy)">Revised Bonus Point System (2028 JAE)</h3>
+  <h3 style="font-family:'Fraunces',serif;font-size:1.2rem;margin-bottom:16px;color:var(--navy)">Revised Bonus Point System (2028 PSE)</h3>
 
   <div class="callout rose">
     <div class="c-ico">⚠️</div>
@@ -478,7 +478,7 @@ tr:hover td{background:#fafcfe}
     <div class="bcard"><div class="bcard-n">2</div><div class="bcard-l">Chinese/Malay Sp. Prog. or Bahasa Indonesia (A1–C6)</div></div>
     <div class="bcard"><div class="bcard-n">2</div><div class="bcard-l">Affiliated JC (Must be in 1st choice OR 1st and 2nd choice)</div></div>
   </div>
-  <div class="bonus-cap">🔴 From 2028 JAE: Maximum bonus points = <strong>3</strong> from any combination</div>
+  <div class="bonus-cap">🔴 From 2028 PSE: Maximum bonus points = <strong>3</strong> from any combination</div>
   <div class="callout green" style="margin-top:8px">
     <div class="c-ico">✅</div>
     <div class="c-body">
@@ -1996,7 +1996,7 @@ function calcJC(){
 
   let note = `Raw L1R4: <strong>${raw}</strong>. Bonus deducted: <strong>${cappedBonus + lep}</strong> pts (net: <strong>${net}</strong>).`;
   if (!allMinPass) note += ` <strong>⚠️ One or more minimum grade requirements (English, Mathematics, or Mother Tongue) are not met</strong> — these must all be satisfied on top of the L1R4 aggregate.`;
-  if(preCap > 3) note += ` <strong>Note:</strong> Bonus was capped at 3 (from 2028 JAE) — ${preCap-3} bonus pt(s) were not counted.`;
+  if(preCap > 3) note += ` <strong>Note:</strong> Bonus was capped at 3 (from 2028 PSE) — ${preCap-3} bonus pt(s) were not counted.`;
   if(hasH && hmtl < el) note += ` HMTL used as L1 instead of EL, saving <strong>${el-hmtl} pt(s)</strong>.`;
   if(!hasH) note += ` Tip: if your child takes HMTL and it scores better than EL, it can lower L1 — toggle HMTL above to see the impact.`;
   note += ` Eligibility is based on the raw L1R4 (before bonus deductions) together with the minimum grade requirements for English, Mathematics and Mother Tongue; bonus points help compete for specific school cut-offs. Always verify with MOE CourseFinder.`;
